@@ -1,0 +1,15 @@
+{
+    "options": [{
+            "name": "Click for more options",
+            "id": "1"
+        }, {
+            "name": "This is the options",
+            "id": "2"
+        },{
+            "name": "Wow Nice",
+            "id": "3"
+        }, {
+            "name": "Something else",
+            "id": "4"
+        }]
+}

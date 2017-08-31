@@ -1,0 +1,28 @@
+2016-10-02 11:41:10,082 WARN  [SoapUI] Missing folder [C:\Users\pkarthikamarnath\Webserviceclient\.\ext] for external libraries
+2016-10-02 11:41:10,084 INFO  [DefaultSoapUICore] Creating new settings at [C:\Users\pkarthikamarnath\soapui-settings.xml]
+2016-10-02 11:41:11,186 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/xop.xsd with targetNamespace http://www.w3.org/2004/08/xop/include
+2016-10-02 11:41:11,226 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/XMLSchema.xsd with targetNamespace http://www.w3.org/2001/XMLSchema
+2016-10-02 11:41:11,236 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/xml.xsd with targetNamespace http://www.w3.org/XML/1998/namespace
+2016-10-02 11:41:11,240 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/swaref.xsd with targetNamespace http://ws-i.org/profiles/basic/1.1/xsd
+2016-10-02 11:41:11,243 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/xmime200505.xsd with targetNamespace http://www.w3.org/2005/05/xmlmime
+2016-10-02 11:41:11,246 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/xmime200411.xsd with targetNamespace http://www.w3.org/2004/11/xmlmime
+2016-10-02 11:41:11,250 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/soapEnvelope.xsd with targetNamespace http://schemas.xmlsoap.org/soap/envelope/
+2016-10-02 11:41:11,257 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/soapEncoding.xsd with targetNamespace http://schemas.xmlsoap.org/soap/encoding/
+2016-10-02 11:41:11,261 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/soapEnvelope12.xsd with targetNamespace http://www.w3.org/2003/05/soap-envelope
+2016-10-02 11:41:11,266 INFO  [SchemaUtils] Added default schema from file:/C:/Users/pkarthikamarnath/.m2/repository/eviware/soapui/4.5.0/soapui-4.5.0.jar!/com/eviware/soapui/resources/xsds/soapEncoding12.xsd with targetNamespace http://www.w3.org/2003/05/soap-encoding
+2016-10-02 11:41:12,570 INFO  [SchemaUtils] Loading schema types from [http://www.dneonline.com/calculator.asmx?WSDL]
+2016-10-02 11:41:12,570 INFO  [SchemaUtils] Getting schema http://www.dneonline.com/calculator.asmx?WSDL
+2016-10-02 11:41:12,774 INFO  [WsdlImporter] Finding importer for {http://tempuri.org/}CalculatorSoap12
+2016-10-02 11:41:12,779 INFO  [WsdlImporter] Importing binding {http://tempuri.org/}CalculatorSoap12
+2016-10-02 11:41:12,841 INFO  [Soap12HttpBindingImporter] importing endpoint http://www.dneonline.com/calculator.asmx
+2016-10-02 11:41:12,877 INFO  [Soap12HttpBindingImporter] importing operation Add
+2016-10-02 11:41:12,990 INFO  [Soap12HttpBindingImporter] importing operation Divide
+2016-10-02 11:41:12,992 INFO  [Soap12HttpBindingImporter] importing operation Multiply
+2016-10-02 11:41:12,993 INFO  [Soap12HttpBindingImporter] importing operation Subtract
+2016-10-02 11:41:13,062 INFO  [WsdlImporter] Finding importer for {http://tempuri.org/}CalculatorSoap
+2016-10-02 11:41:13,062 INFO  [WsdlImporter] Importing binding {http://tempuri.org/}CalculatorSoap
+2016-10-02 11:41:13,062 INFO  [Soap11HttpBindingImporter] importing endpoint http://www.dneonline.com/calculator.asmx
+2016-10-02 11:41:13,063 INFO  [Soap11HttpBindingImporter] importing operation Add
+2016-10-02 11:41:13,063 INFO  [Soap11HttpBindingImporter] importing operation Divide
+2016-10-02 11:41:13,064 INFO  [Soap11HttpBindingImporter] importing operation Multiply
+2016-10-02 11:41:13,064 INFO  [Soap11HttpBindingImporter] importing operation Subtract

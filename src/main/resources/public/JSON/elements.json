@@ -1,0 +1,13 @@
+{
+    "elements": [{
+      "type": "text",
+      "name": "options1",
+      "id": "1",
+      "required": true
+    },{
+      "type": "text",
+      "name": "options2",
+      "id": "2",
+      "required": false
+    }]
+}

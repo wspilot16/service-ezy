@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Soap WSDL</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS -->
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/form-elements.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+<!-- Favicon and touch icons -->
+<link rel="shortcut icon" href="assets/ico/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="assets/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div id="overlay">
+		<img src="img/loader.gif" alt="Loading" /><br /> <b>My head is spinning</b>
+	</div>
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+		id="errorPopUp" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header no-border">
+					<h4 class="modal-title">Please enter valid URL</h4>
+				</div>
+				<div class="modal-footer no-border">
+					<div class="col-sm-offset-4 col-sm-4">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="welcomePagePop" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+                </button>
+                 <h4 class="modal-title">Welcome to Service Ezy</h4>
+
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#essentialsTab"  data-toggle="tab">Essentials</a>
+
+                        </li>
+                        <li role="presentation"><a href="#limitationsTab" data-toggle="tab">Limitations</a>
+
+                        </li>
+                        <li role="presentation"><a href="#featureTab" data-toggle="tab">Features of the tool</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tab-alignment">
+                        <div role="tabpanel" class="tab-pane active" id="#essentialsTab"><br>
+							<p>
+								Service should be up and running for successful execution....phew!!
+						
+							</p>
+							<p>User should know the Endpoint service url, i.e. WSDL url... gotcha!</p>
+						</div>
+                        <div role="tabpanel" class="tab-pane" id="limitationsTab"><br>
+							<p>Currently handles Soap WebService .. more to come in coming releases :D</p>
+						</div>
+                        <div role="tabpanel" class="tab-pane" id="featureTab"><br>
+							<p>Gives response to a SOAP webservice request in a very user friendly manner... Techies, sit back please!!</p>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	<div class="modal fade" id="addHeaders" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Add header just to
+						be secured</h4>
+				</div>
+
+				<!-- Modal Body -->
+				<div class="modal-body">
+
+					<form role="form">
+						<div class="form-group">
+							<label class="pull-left" for="selectHeaderType">Select
+								Header Type</label> <select class="form-control" id="selectHeaderType">
+								<option value="0">Select any header</option>
+								<option value="1">SOAP</option>
+								<option value="2">HTTP</option>
+							</select>
+						</div>
+						<div class="form-group hidden" id="soapHeaderDiv">
+							<label for="soapHeaderText" class="pull-left">Value</label> <input
+								type="text" class="form-control" id="soapHeaderText"
+								placeholder="Please enter a value" />
+						</div>
+
+						<div class="form-group hidden" id="httpHeaderDiv">
+							<label for="httpKey" class="pull-left">Key</label> <input
+								type="text" class="form-control" id="httpKey" placeholder="Please enter a key" />
+
+							<label for="httpValue" class="pull-left">Value</label> <input
+								type="text" class="form-control" id="httpValue"
+								placeholder="Please enter a value" />
+						</div>
+
+					</form>
+
+
+				</div>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addHeaderSubmit">
+						Proceed</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Top content -->
+	<div class="top-content">
+		<div class="inner-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2 text">
+						<h1>
+							Service Ezy
+							<a href="#welcomePagePop" data-toggle="modal" style="float:right">
+								<span class="tooltipData" data-toggle="tooltip" data-placement="top" title="Click to view welcome page"><i class="glyphicon glyphicon-home glyphicon-home-2x "></i></span>
+							</a>
+						</h1>
+					</div>
+				</div>
+				<div class="row col-sm-12">
+					<ul class="breadcrumb">
+						<li class="active" id="step1" onclick="forwardToStep(1);">
+							<a href="#" >Step 1</a>
+						</li>
+						<li id="step2" onclick="forwardToStep(2);"><a href="#">Step 2</a></li>
+						<li id="step3" onclick="forwardToStep(3);"><a href="#">Step 3</a></li>
+						<li id="step4" onclick="forwardToStep(4);"><a href="#">Step 4</a></li>
+					</ul>
+				</div>
+				<div class="row align-center">
+					<div class="col-sm-12">
+						<div class="row">
+
+							<div class="col-sm-offset-3 col-sm-6" id="byte-step1">
+								<p>
+									<strong>It seems you need me, lets start the journey !</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<p><strong>Enter your Service URL</strong></p>
+										</div>
+									</div>
+									<div class="form-bottom">
+										<form id="wsdlSubmitForm" class="login-form">
+											<div class="form-group">
+												<input
+													type="url" name="form-username" placeholder="WSDL URL"
+													class="form-username form-control" id="form-username">
+											</div>
+											<button type="submit" id="wsdlSubmit" class="btn">Hit
+												it. Let me take your URL for a trip.</button>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-offset-3 col-sm-6 hidden" id="showOptions">
+								<p>
+									<strong>Here are the list of operations, available
+										from the service.</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<strong>Just click on any one to get going</strong>
+										</div>
+									</div>
+									<div class="form-bottom">
+										<div class="list-group" id="option_list"></div>
+									</div>
+									<div><span class="showPointer" onclick="forwardToStep(1);">Back</span></div>
+								</div>
+							</div>
+							<div class="col-sm-offset-3 col-sm-6 hidden" id="showElements">
+								<p>
+									<strong>Here are the list of elements, available
+										from the operation you selected.</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="margin-top-15">
+											<strong style="display:inline">Enter details below<span class="hidden font-style" id="showHeadersAdded">&nbsp;Remove headers</span></strong>
+											
+											<button style="margin-bottom: 15px"
+												class="btn btn-default btn-small pull-right"
+												data-toggle="modal" data-target="#addHeaders">
+												<span class="glyphicon glyphicon-plus"></span>Add security headers
+											</button>
+										</div>
+									</div>
+									<div class="form-bottom">
+										
+										<form id="elementFormSubmit" class="login-form">
+											<div id="dynamicElementForm"></div>
+											<button type="submit" id="elementsSubmitBtn" class="btn">Submit</button>
+										</form>
+									</div>
+									<div><span class="showPointer" onclick="forwardToStep(2);">Back</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12 hidden" id="finalOutputOuterDiv">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="hideIfError">
+									<strong>Congratulations! You made it till end. Below
+										is your result.</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<p><strong class="hideIfError">Output - <i class="fa fa-clock-o"></i> <span id="showTimstamp"></span></strong></p>
+											
+											<div class="btn-group form-group hideIfError" data-toggle="buttons">
+												<form class="type">
+													<input type="radio" name="type" value="html"
+														checked="checked">HTML</input> <input type="radio"
+														name="type" value="xml">XML</input>
+
+												</form>
+											</div>
+											<h4 id="errorFinalPage" class="hidden error"></h4>
+										</div>
+										<div class="top-left">
+											<button id="copyButton" class="btn pull-right">Copy</button>
+										</div>
+									</div>
+									<div class="form-bottom">
+										<div id="finalOutputHtml"></div>	
+										<textarea disabled id="finalOutput"></textarea>	
+																		
+									</div>
+									
+									<div><span class="showPointer" onclick="forwardToStep(3);">Back</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="footer-border"></div>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript -->
+	<script src="script/jquery-3.1.1.js" type="text/javascript"></script>
+	<script src="css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="script/scripts.js" type="text/javascript"></script>
+	<script src="script/home.js" type="text/javascript"></script>
+	<!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+</body>
+</html>

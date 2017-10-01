@@ -19,6 +19,8 @@ public class ServiceData {
 	private String responseTime;
 	private String errorDescription;
 	private Integer errorCode;
+	private String response;
+	private String requestUri;
 
 	public String getErrorDescription() {
 		return errorDescription;
@@ -130,5 +132,20 @@ public class ServiceData {
 
 	public void setResponseTime(String responseTime) {
 		this.responseTime = responseTime;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public String getRequestUri() {
+		return requestUri;
+	}
+	public void setRequestUri(String requestUri) {
+		this.requestUri = requestUri;
 	}
 }

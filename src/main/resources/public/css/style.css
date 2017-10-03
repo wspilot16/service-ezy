@@ -338,3 +338,33 @@ input[type=checkbox], input[type=radio]{
 	border-radius: 5px;
 	
 }
+.soapView, .restView{
+	display: none;
+}
+.url-type, .url-name {
+	float:left;
+	padding: 0px;
+}
+.url-type{
+	width: auto;
+}
+.url-name{
+	width: 82%;
+}
+#restSubmit{
+	margin-top: 20px;
+}
+@media only screen and (max-width: 768px){
+	.url-name{
+		width: 100%;
+		margin-top: 10px;
+	}
+}
+@media only screen and (max-width: 1024px){
+	.url-name{
+		width:	78%
+	}
+}
+.margin-remove{
+	margin-bottom: 0px;
+}

@@ -19,16 +19,16 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.wsclient.model.ServiceData;
 import com.wsclient.service.RestClientService;
 
-@RestController(value = "/rest")
+@RestController
+@RequestMapping(value = "/rest")
 public class WsRestClientController {
 	private final Logger logger = LoggerFactory.getLogger(WsRestClientController.class);
 
 	@Autowired
 	RestClientService restClientService;
 
-	@RequestMapping(value = "/get", method = RequestMethod.POST, produces = { "application/json" })
-	public ServiceData processGetRequest(@RequestBody String requestUri) {
-		ServiceData serviceData = new ServiceData();
+	@RequestMapping(value = "/get", method = RequestMethod.POST, consumes={"application/json"}, produces = { "application/json" })
+	public ServiceData processGetRequest(@RequestBody ServiceData serviceData) {
 		try {
 			serviceData = restClientService.get(serviceData);
 		} catch (RestClientException e) {

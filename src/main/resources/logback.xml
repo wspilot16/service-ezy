@@ -22,6 +22,9 @@
 	<logger name="com.wsclient.controller" level="ERROR">
 		<appender-ref ref="FILE" />
 	</logger>
+	<logger name="org.springframework" level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</logger>
 
 	<!-- Setting the root level of logging to INFO -->
 	<root level="info">

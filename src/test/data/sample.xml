@@ -1,0 +1,17 @@
+<default>
+	<column>
+		<title>Title 1</title>
+		<id>id1</id>
+		<value>val1</value>
+	</column>
+	<column>
+		<title>Title 2</title>
+		<id>id2</id>
+		<value>val2</value>
+	</column>
+	<column>
+		<title>Title 3</title>
+		<id>id3</id>
+		<value>val3</value>
+	</column>
+</default>

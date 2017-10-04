@@ -370,4 +370,14 @@ $(document).ready(function () {
 		};
 	});
 });
+$("#soap").click(function(){
+	$('.soapView').css('display',"block");
+	$('.restView').css('display',"none");
+});
+$("#rest").click(function(){
+	$('.soapView').css('display',"none");
+	$('.restView').css('display',"block");
+	
+});
+
 

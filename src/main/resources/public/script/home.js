@@ -401,4 +401,21 @@ $('#headerTable').on('click','.removeHeaderRow', function(event){
 
 
 
+$("#restSubmit").click(function() {
+	var form = $(this).closest("form");
+	var serviceData = new Object();
+	serviceData.requestUri = $(form).find("#requestUri").val();
+	var method = $(form).find("#postType").val();
+	$.ajax({		
+		url: "http://localhost:8089/rest/"+method,
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(serviceData),
+		type: 'post',
+		success: function(result, status, xhr) {
+			$('.rest-response-view.jjson').jJsonViewer(result.response);
+		}
+	});
+});
+
 

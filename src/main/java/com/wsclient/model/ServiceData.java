@@ -23,6 +23,7 @@ public class ServiceData {
 	private String requestUri;
 	private String requestBody;
 	private Map<String, String> requestMap;
+	private List<KeyValue> headers;
 
 	public String getErrorDescription() {
 		return errorDescription;
@@ -84,7 +85,7 @@ public class ServiceData {
 	}
 
 	public void setContext(String context) {
-		
+
 		this.context = context;
 	}
 
@@ -165,5 +166,17 @@ public class ServiceData {
 
 	public void setRequestMap(Map<String, String> requestMap) {
 		this.requestMap = requestMap;
+	}
+
+	public List<KeyValue> getHeaders() {
+		if (headers == null) {
+			headers = new ArrayList<>();
+		}
+
+		return headers;
+	}
+
+	public void setHeaders(List<KeyValue> headers) {
+		this.headers = headers;
 	}
 }

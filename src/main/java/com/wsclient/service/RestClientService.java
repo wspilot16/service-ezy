@@ -32,7 +32,7 @@ public class RestClientService {
 		ResponseEntity<String> responseEntity = customFactory.getRestTemplate()
 				.getForEntity(serviceData.getRequestUri(), String.class);
 		serviceData.setResponse(responseEntity.getBody());
-		serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
+		//serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
 		return serviceData;
 	}
 

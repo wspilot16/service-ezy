@@ -371,7 +371,7 @@ input[type=checkbox], input[type=radio]{
 .step1Show{
 	display: block;
 }
-.step2PostShow{
+.step2PostShow, .step2GetShow, .step3PostShow{
 	display: none;
 }
 .request-styles{

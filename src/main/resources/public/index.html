@@ -338,18 +338,50 @@
 											<button type="button" id="restSubmit" class="btn">Hit
 												it. Let me take your URL for a trip.</button>
 										</form>
-										<div class="rest-response-view jjson">
-
-										</div>
+										
 									</div>
 								</div>
 							</div>
 					</div>
 					</div>
+					<div class="step2GetShow">
+						<div class="row col-sm-12">	
+						<ul class="breadcrumb">
+							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="active" id="step2" onclick="forwardToStep(2);">
+								<a href="#" >Step 2</a>
+							</li>
+						</ul>
+						</div>
+						<div class="row align-center">
+						<div class="col-sm-offset-3 col-sm-6" id="byte-step1">
+								<p>
+									<strong>Hurray Get Response!</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<p><strong>Response</strong></p>
+										</div>
+										<div class="form-top-right">
+											<button style="margin-bottom: 15px; margin-top: 15px"
+												class="btn btn-default btn-small pull-right"
+												data-toggle="modal" data-target="#expandView">
+												<span class="glyphicon glyphicon-plus"></span>Expand
+											</button>
+										</div>
+									</div>
+									<div class="form-bottom rest-response-view jjson">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
 					<div class="step2PostShow">
 						<div class="row col-sm-12">
 						<ul class="breadcrumb">
-							<li id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
 							<li class="active" id="step2" onclick="forwardToStep(2);">
 								<a href="#" >Step 2</a>
 							</li>
@@ -419,6 +451,39 @@
 							</div>
 					</div>
 					</div>
+					<div class="step3PostShow">
+						<div class="row col-sm-12">	
+						<ul class="breadcrumb">
+							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="completed" id="step2" onclick="forwardToStep(2);"><a href="#" >Step 2</a></li>
+							<li class="active" id="step3" onclick="forwardToStep(3);"><a href="#">Step 3</a></li>
+						</ul>
+						</div>
+						<div class="row align-center">
+						<div class="col-sm-offset-3 col-sm-6" id="byte-step1">
+								<p>
+									<strong>Hurray Post Response!</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<p><strong>Response</strong></p>
+										</div>
+										<div class="form-top-right">
+											<button style="margin-bottom: 15px; margin-top: 15px"
+												class="btn btn-default btn-small pull-right"
+												data-toggle="modal" data-target="#expandView">
+												<span class="glyphicon glyphicon-plus"></span>Expand
+											</button>
+										</div>
+									</div>
+									<div class="form-bottom post-response-view jjson">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
 					</div>
 				</div>
 			</div>
@@ -469,6 +534,24 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="addHeaderSubmit">
 						Proceed</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="expandView" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Response</h4>
+				</div>
+				<div class="modal-body expand-response">
+
+				</div>
+				<div class="modal-footer">
 				</div>
 			</div>
 		</div>

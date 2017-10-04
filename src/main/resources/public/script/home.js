@@ -369,11 +369,6 @@ $(document).ready(function () {
 				break;
 		};
 	});
-	$('#restSubmit').click(function (e) {
-		e.preventDefault();
-		$('.step1Show').css('display',"none");
-		$('.step2PostShow').css('display',"block");
-	});
 });
 $("#soap").click(function(){
 	$('.soapView').css('display',"block");
@@ -399,23 +394,48 @@ $('#headerTable').on('click','.removeHeaderRow', function(event){
     $(this).closest('tr').remove();
 });
 
-
-
 $("#restSubmit").click(function() {
-	var form = $(this).closest("form");
-	var serviceData = new Object();
-	serviceData.requestUri = $(form).find("#requestUri").val();
-	var method = $(form).find("#postType").val();
-	$.ajax({		
-		url: "http://localhost:8089/rest/"+method,
-		contentType: 'application/json',
-		dataType: 'json',
-		data: JSON.stringify(serviceData),
-		type: 'post',
-		success: function(result, status, xhr) {
-			$('.rest-response-view.jjson').jJsonViewer(result.response);
-		}
-	});
+	var requestType =  $("select#postType").val();
+	$('.step1Show').css('display',"none");
+	if(requestType == 'get'){
+		$('#overlay').fadeIn();
+		$('.step2GetShow').css('display',"block");
+		var form = $(this).closest("form");
+		var serviceData = new Object();
+		serviceData.requestUri = $(form).find("#requestUri").val();
+		var method = $(form).find("#postType").val();
+		$.ajax({		
+			url: "http://localhost:8089/rest/"+method,
+			contentType: 'application/json',
+			dataType: 'json',
+			data: JSON.stringify(serviceData),
+			type: 'post',
+			success: function(result, status, xhr) {
+				$('.rest-response-view.jjson').jJsonViewer(result.response);
+				$('.expand-response').jJsonViewer(result.response);
+			},
+			error: function(err){
+				$('#errorPopUp').modal('show');
+				$('#errorPopUp .modal-header h4').text('Something went wrong. Please try again');
+			},
+			complete: function(){
+				$('#overlay').fadeOut();
+			}
+		});
+	}
+	else if (requestType == 'post'){
+		$('.step2PostShow').css('display',"block");
+	}
+});
+$("#postSubmit").click(function() {
+	$('.step2PostShow').css('display',"none");
+	$('#overlay').fadeIn();
+	$('.step3PostShow').css('display',"block");
+	/* Response should go to below div's
+	* $('.post-response-view.jjson').jJsonViewer(result.response);
+	  $('.expand-response').jJsonViewer(result.response);
+	*/
+	$('#overlay').fadeOut();
 });
 
 

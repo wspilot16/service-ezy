@@ -21,6 +21,8 @@ public class ServiceData {
 	private Integer errorCode;
 	private String response;
 	private String requestUri;
+	private String requestBody;
+	private Map<String, String> requestMap;
 
 	public String getErrorDescription() {
 		return errorDescription;
@@ -147,5 +149,21 @@ public class ServiceData {
 	}
 	public void setRequestUri(String requestUri) {
 		this.requestUri = requestUri;
+	}
+
+	public String getRequestBody() {
+		return requestBody;
+	}
+
+	public void setRequestBody(String requestBody) {
+		this.requestBody = requestBody;
+	}
+
+	public Map<String, String> getRequestMap() {
+		return requestMap;
+	}
+
+	public void setRequestMap(Map<String, String> requestMap) {
+		this.requestMap = requestMap;
 	}
 }

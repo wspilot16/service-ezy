@@ -7,11 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.httpclient.methods.RequestEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -40,10 +38,11 @@ public class RestClientService {
 
 	public ServiceData post(ServiceData serviceData) throws JsonParseException, JsonMappingException, IOException,
 			RestClientException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
-		ResponseEntity<String> responseEntity = customFactory.getRestTemplate()
-				.exchange(serviceData, HttpMethod.POST, requestEntity, responseType)
-		serviceData.setResponse(responseEntity.getBody());
-		serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
+		// ResponseEntity<String> responseEntity =
+		// customFactory.getRestTemplate()
+		// .exchange(serviceData, HttpMethod.POST, requestEntity, responseType)
+		// serviceData.setResponse(responseEntity.getBody());
+		// serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
 		return serviceData;
 	}
 

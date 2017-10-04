@@ -295,6 +295,7 @@
 				</div>
 				</div>
 				<div class="restView">
+					<div class="step1Show">
 					<div class="row col-sm-12">
 						<ul class="breadcrumb">
 							<li class="active" id="step1" onclick="forwardToStep(1);">
@@ -339,10 +340,133 @@
 								</div>
 							</div>
 					</div>
+					</div>
+					<div class="step2PostShow">
+						<div class="row col-sm-12">
+						<ul class="breadcrumb">
+							<li id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="active" id="step2" onclick="forwardToStep(2);">
+								<a href="#" >Step 2</a>
+							</li>
+							<li id="step3" onclick="forwardToStep(3);"><a href="#">Step 3</a></li>
+						</ul>
+					</div>
+					<div class="row align-center">
+						<div class="col-sm-offset-3 col-sm-6" id="byte-step1">
+								<p>
+									<strong>It seems you need me, lets start the journey !</strong>
+								</p>
+								<div class="form-box no-margin-top">
+									<div class="form-top">
+										<div class="form-top-left">
+											<p><strong>Enter your Request</strong></p>
+											
+										</div>
+										<div class="form-top-right">
+											<button style="margin-bottom: 15px; margin-top: 15px"
+												class="btn btn-default btn-small pull-right"
+												data-toggle="modal" data-target="#addRestHeaders">
+												<span class="glyphicon glyphicon-plus"></span>Add security headers
+											</button>
+										</div>
+									</div>
+									<div class="form-bottom">
+										<form id="postSubmitForm" class="login-form">
+										<div role="tabpanel">
+						                    <!-- Nav tabs -->
+						                    <ul class="nav nav-tabs" role="tablist">
+						                        <li role="presentation" class="active"><a href="#body"  data-toggle="tab">Body</a>
+						
+						                        </li>
+						                        <li role="presentation"><a href="#parameter" data-toggle="tab">Parameters</a>
+						
+						                        </li>
+						                    </ul>
+						                    <!-- Tab panes -->
+						                    <div class="tab-content tab-alignment">
+						                        <div role="tabpanel" class="tab-pane active" id="#body"><br>
+													<textarea class="request-styles" rows="100" cols="100" id="requestBody" placeholder="Enter your Request" name="request" form="postSubmitForm"></textarea>
+												</div>
+						                        <div role="tabpanel" class="tab-pane keys" id="parameter"><br>
+													<table class="table table-hover" id="keyValue">
+												    <thead>
+												      <tr>
+												        <th>Key</th>
+												        <th>Value</th>
+												        <th><span class="glyphicon glyphicon-plus-sign addRow"></span></th>
+												      </tr>
+												    </thead>
+												    <tbody>
+												      <tr>
+												        <td><input type="text" placeholder="key" name="key"/></td>
+												        <td><input type="text" placeholder="value" name="value"/></td>
+														<td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeRow"></span></td>
+												      </tr>
+												    </tbody>
+												  </table>  
+												</div>
+						                    </div>
+							             </div>
+										<button type="submit" id="postSubmit" class="btn post-button">Send</button>
+										</form>
+									</div>
+								</div>
+							</div>
+					</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>
+<div class="modal fade" id="addRestHeaders" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Add header just to
+						be secured</h4>
+				</div>
 
+				<!-- Modal Body -->
+				<div class="modal-body">
+
+					<form role="form">
+						<div class="form-group">
+							<label class="pull-left" for="selectHeaderType">Select
+								Header Type</label> <select class="form-control" id="restHeaderType">
+								<option value="0" selected >HTTP</option>
+							</select>
+						</div>
+						<table class="table table-hover" id="headerTable">
+						    <thead>
+						      <tr>
+						        <th>Key</th>
+						        <th>Value</th>
+						        <th><span class="glyphicon glyphicon-plus-sign addHeaderRow"></span></th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td><input type="text" placeholder="key" name="headerKey"/></td>
+						        <td><input type="text" placeholder="value" name="headerValue"/></td>
+								<td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeHeaderRow"></span></td>
+						      </tr>
+						    </tbody>
+						  </table>
+					</form>
+				</div>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addHeaderSubmit">
+						Proceed</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Footer -->

@@ -368,3 +368,28 @@ input[type=checkbox], input[type=radio]{
 .margin-remove{
 	margin-bottom: 0px;
 }
+.step1Show{
+	display: block;
+}
+.step2PostShow{
+	display: none;
+}
+.request-styles{
+	margin: 0px; 
+	height: 451px !important; 
+}
+.post-button{
+	margin-top: 20px !important;
+}
+.removeHeaderRow, .removeRow{
+	display: block;
+	color: #ff0000;
+}
+.addHeaderRow, .addRow{
+	color: #008000;
+}
+.removeIconRow{
+	padding-top: 25px !important;
+}
+
+

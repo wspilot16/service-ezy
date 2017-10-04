@@ -369,6 +369,11 @@ $(document).ready(function () {
 				break;
 		};
 	});
+	$('#restSubmit').click(function (e) {
+		e.preventDefault();
+		$('.step1Show').css('display',"none");
+		$('.step2PostShow').css('display',"block");
+	});
 });
 $("#soap").click(function(){
 	$('.soapView').css('display',"block");
@@ -379,5 +384,21 @@ $("#rest").click(function(){
 	$('.restView').css('display',"block");
 	
 });
+$('#keyValue').on('click','.removeRow', function(event){
+    event.preventDefault();
+    $(this).closest('tr').remove();
+});
+$('.addRow').click(function(e){
+	$('#keyValue').append('<tr><td><input type="text" placeholder="key" name="key"/></td><td><input type="text" placeholder="value" name="value"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeRow"></span></td></tr>');
+});
+$('.addHeaderRow').click(function(e){
+	$('#headerTable').append('<tr><td><input type="text" placeholder="key" name="key"/></td><td><input type="text" placeholder="value" name="value"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeHeaderRow"></span></td> </tr>');	
+});
+$('#headerTable').on('click','.removeHeaderRow', function(event){
+    event.preventDefault();
+    $(this).closest('tr').remove();
+});
+
+
 
 

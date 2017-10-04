@@ -392,7 +392,6 @@ $("#restSubmit").click(function() {
 		data: JSON.stringify(serviceData),
 		type: 'post',
 		success: function(result, status, xhr) {
-			console.log(result.response);
 			$('.rest-response-view.jjson').jJsonViewer(result.response);
 		}
 	});

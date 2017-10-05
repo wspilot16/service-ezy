@@ -297,7 +297,7 @@
 				</div>
 				</div>
 				<div class="restView">
-					<div class="step1Show">
+					<div class="step1Show step-cls">
 					<div class="row col-sm-12">
 						<ul class="breadcrumb">
 							<li class="active" id="step1" onclick="forwardToStep(1);">
@@ -325,14 +325,12 @@
 											  		<select name="postType" id="postType" title="" class="btn btn-default">
 														<option selected value="get">Get</option>
 														<option value="post">Post</option>
-														<option value="put">Put</option>
-														<option value="delete">Delete</option>
 													</select>
 											  </div>
 											  <div class="col-sm-9 col-md-9 col-xs-12 url-name">
 												<input
 													type="url" name="requestUri" placeholder="REST URL"
-													class="form-username form-control" id="requestUri">
+													class="form-username form-control" id="requestUri" required>
 													</div>
 											</div>
 											<button type="button" id="restSubmit" class="btn">Hit
@@ -344,7 +342,7 @@
 							</div>
 					</div>
 					</div>
-					<div class="step2GetShow">
+					<div class="step2GetShow step-cls">
 						<div class="row col-sm-12">	
 						<ul class="breadcrumb">
 							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
@@ -378,7 +376,7 @@
 						</div>
 						
 					</div>
-					<div class="step2PostShow">
+					<div class="step2PostShow step-cls">
 						<div class="row col-sm-12">
 						<ul class="breadcrumb">
 							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
@@ -421,7 +419,7 @@
 						                    </ul>
 						                    <!-- Tab panes -->
 						                    <div class="tab-content tab-alignment">
-						                        <div role="tabpanel" class="tab-pane active" id="#body"><br>
+						                        <div role="tabpanel" class="tab-pane active" id="body"><br>
 													<textarea class="request-styles" rows="100" cols="100" id="requestBody" placeholder="Enter your Request" name="request" form="postSubmitForm"></textarea>
 												</div>
 						                        <div role="tabpanel" class="tab-pane keys" id="parameter"><br>
@@ -435,8 +433,8 @@
 												    </thead>
 												    <tbody>
 												      <tr>
-												        <td><input type="text" placeholder="key" name="key"/></td>
-												        <td><input type="text" placeholder="value" name="value"/></td>
+												        <td><input type="text" id="key" placeholder="key" name="key"/></td>
+												        <td><input type="text" id="value" placeholder="value" name="value"/></td>
 														<td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeRow"></span></td>
 												      </tr>
 												    </tbody>
@@ -451,7 +449,7 @@
 							</div>
 					</div>
 					</div>
-					<div class="step3PostShow">
+					<div class="step3PostShow step-cls">
 						<div class="row col-sm-12">	
 						<ul class="breadcrumb">
 							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
@@ -492,7 +490,6 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<!-- Modal Header -->
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
@@ -500,10 +497,7 @@
 					<h4 class="modal-title" id="myModalLabel">Add header just to
 						be secured</h4>
 				</div>
-
-				<!-- Modal Body -->
 				<div class="modal-body">
-
 					<form role="form">
 						<div class="form-group">
 							<label class="pull-left" for="selectHeaderType">Select
@@ -521,16 +515,14 @@
 						    </thead>
 						    <tbody>
 						      <tr>
-						        <td><input type="text" placeholder="key" name="headerKey"/></td>
-						        <td><input type="text" placeholder="value" name="headerValue"/></td>
+						        <td><input type="text" placeholder="key" id="headerKey" name="headerKey"/></td>
+						        <td><input type="text" placeholder="value" id="headerValue" name="headerValue"/></td>
 								<td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeHeaderRow"></span></td>
 						      </tr>
 						    </tbody>
 						  </table>
 					</form>
 				</div>
-
-				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="addHeaderSubmit">
 						Proceed</button>

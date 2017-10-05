@@ -377,17 +377,19 @@ $("#soap").click(function(){
 $("#rest").click(function(){
 	$('.soapView').css('display',"none");
 	$('.restView').css('display',"block");
-	
+	$('.step-cls').css('display',"none");
+	$('.step1Show').css('display',"block");	
+	$('#requestUri').val('');
 });
 $('#keyValue').on('click','.removeRow', function(event){
     event.preventDefault();
     $(this).closest('tr').remove();
 });
 $('.addRow').click(function(e){
-	$('#keyValue').append('<tr><td><input type="text" placeholder="key" name="key"/></td><td><input type="text" placeholder="value" name="value"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeRow"></span></td></tr>');
+	$('#keyValue').append('<tr><td><input type="text" id="key" placeholder="key" name="key"/></td><td><input type="text" id="value" placeholder="value" name="value"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeRow"></span></td></tr>');
 });
 $('.addHeaderRow').click(function(e){
-	$('#headerTable').append('<tr><td><input type="text" placeholder="key" name="key"/></td><td><input type="text" placeholder="value" name="value"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeHeaderRow"></span></td> </tr>');	
+	$('#headerTable').append('<tr><td><input type="text" placeholder="key" id="headerKey" name="headerKey"/></td><td><input type="text" id="headerValue" placeholder="value" name="headerValue"/></td> <td class="removeIconRow"><span class="glyphicon glyphicon-minus-sign removeHeaderRow"></span></td> </tr>');	
 });
 $('#headerTable').on('click','.removeHeaderRow', function(event){
     event.preventDefault();
@@ -399,7 +401,6 @@ $("#restSubmit").click(function() {
 	$('.step1Show').css('display',"none");
 	if(requestType == 'get'){
 		$('#overlay').fadeIn();
-		$('.step2GetShow').css('display',"block");
 		var form = $(this).closest("form");
 		var serviceData = new Object();
 		serviceData.requestUri = $(form).find("#requestUri").val();
@@ -411,12 +412,15 @@ $("#restSubmit").click(function() {
 			data: JSON.stringify(serviceData),
 			type: 'post',
 			success: function(result, status, xhr) {
+				$('.step2GetShow').css('display',"block");
 				$('.rest-response-view.jjson').jJsonViewer(result.response);
 				$('.expand-response').jJsonViewer(result.response);
 			},
 			error: function(err){
+				$('.step1Show').css('display',"block");
+				$('.step2GetShow').css('display',"none");
 				$('#errorPopUp').modal('show');
-				$('#errorPopUp .modal-header h4').text('Something went wrong. Please try again');
+				$('#errorPopUp .modal-header h4').text('Please Enter Valid Request');
 			},
 			complete: function(){
 				$('#overlay').fadeOut();

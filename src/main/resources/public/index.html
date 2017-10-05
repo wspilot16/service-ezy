@@ -371,10 +371,10 @@
 									</div>
 									<div class="form-bottom rest-response-view jjson">
 									</div>
+									<div><span class="showPointer" onclick="forwardToStep(1);">Back</span></div>
 								</div>
 							</div>
 						</div>
-						
 					</div>
 					<div class="step2PostShow step-cls">
 						<div class="row col-sm-12">
@@ -410,12 +410,8 @@
 										<div role="tabpanel">
 						                    <!-- Nav tabs -->
 						                    <ul class="nav nav-tabs" role="tablist">
-						                        <li role="presentation" class="active"><a href="#body"  data-toggle="tab">Body</a>
-						
-						                        </li>
-						                        <li role="presentation"><a href="#parameter" data-toggle="tab">Parameters</a>
-						
-						                        </li>
+						                        <li role="presentation" class="active"><a href="#body"  data-toggle="tab">Body</a></li>
+						                        <li role="presentation" class="hide"><a href="#parameter" data-toggle="tab">Parameters</a></li>
 						                    </ul>
 						                    <!-- Tab panes -->
 						                    <div class="tab-content tab-alignment">
@@ -445,6 +441,7 @@
 										<button type="submit" id="postSubmit" class="btn post-button">Send</button>
 										</form>
 									</div>
+									<div><span class="showPointer" onclick="forwardToStep(1);">Back</span></div>
 								</div>
 							</div>
 					</div>
@@ -460,7 +457,7 @@
 						<div class="row align-center">
 						<div class="col-sm-offset-3 col-sm-6" id="byte-step1">
 								<p>
-									<strong>Hurray Post Response!</strong>
+									<strong>Congratulations! You made it till end. Below is your result.</strong>
 								</p>
 								<div class="form-box no-margin-top">
 									<div class="form-top">
@@ -477,6 +474,7 @@
 									</div>
 									<div class="form-bottom post-response-view jjson">
 									</div>
+									<div><span class="showPointer" onclick="forwardToStep(2);">Back</span></div>
 								</div>
 							</div>
 						</div>
@@ -524,7 +522,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="addHeaderSubmit">
+					<button type="button" class="btn btn-primary close" id="addHeaderSubmit" data-dismiss="modal">
 						Proceed</button>
 				</div>
 			</div>

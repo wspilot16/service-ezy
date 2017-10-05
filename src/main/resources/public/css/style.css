@@ -391,5 +391,18 @@ input[type=checkbox], input[type=radio]{
 .removeIconRow{
 	padding-top: 25px !important;
 }
-
-
+#expandView .modal-dialog{
+	width: 70%;
+	height: 89%;
+}
+#expandView .modal-dialog .modal-content{
+	height: 100%;
+	overflow-y: auto;
+	
+}
+#expandView .modal-dialog .modal-content::-webkit-scrollbar {
+  display: none;
+}
+.hide{
+	display:none;
+}

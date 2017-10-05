@@ -432,14 +432,40 @@ $("#restSubmit").click(function() {
 	}
 });
 $("#postSubmit").click(function() {
-	$('.step2PostShow').css('display',"none");
 	$('#overlay').fadeIn();
-	$('.step3PostShow').css('display',"block");
-	/* Response should go to below div's
-	* $('.post-response-view.jjson').jJsonViewer(result.response);
-	  $('.expand-response').jJsonViewer(result.response);
-	*/
-	$('#overlay').fadeOut();
+	var headerKeyEles = $("input[name='headerKey']")
+	var headerValueEles = $("input[name='headerValue']")
+	var arr=[];
+	for(var i=0;i<headerKeyEles.length; i++){
+			var obj = {};
+			obj[headerKeyEles[i].value] = headerValueEles[i].value;
+			arr.push(obj);
+		}
+	var serviceData = new Object();
+	serviceData.requestUri = $("#requestUri").val();
+	serviceData.requestBody = $("#requestBody").val();
+	serviceData.headers = arr;
+	var method = $("#postType").val();
+	$.ajax({		
+		url: "http://localhost:8089/rest/"+method,
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(serviceData),
+		type: 'post',
+		success: function(result, status, xhr) {
+			$('.step2PostShow').css('display',"none");
+			$('.step3PostShow').css('display',"block");
+			$('.post-response-view.jjson').jJsonViewer(result.response);
+			$('.expand-response').jJsonViewer(result.response);
+		},
+		error: function(err){
+			$('#errorPopUp').modal('show');
+			$('#errorPopUp .modal-header h4').text('Something went wrong');
+		},
+		complete: function(){
+			$('#overlay').fadeOut();
+		}
+	});
 });
 
 

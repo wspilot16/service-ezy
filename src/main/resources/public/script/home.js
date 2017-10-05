@@ -384,6 +384,8 @@ $("#restSubmit").click(function() {
 	var form = $(this).closest("form");
 	var serviceData = new Object();
 	serviceData.requestUri = $(form).find("#requestUri").val();
+	serviceData.requestBody = $(form).find("#requestBody").val();
+	serviceData.headers = [{'Content-Type': 'application/json'}];
 	var method = $(form).find("#postType").val();
 	$.ajax({		
 		url: "http://localhost:8089/rest/"+method,

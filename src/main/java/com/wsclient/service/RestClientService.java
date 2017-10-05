@@ -46,6 +46,7 @@ public class RestClientService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
+		CustomFactory customFactory = new CustomFactory();
 		ResponseEntity<String> responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(),
 				HttpMethod.POST, httpEntity, String.class);
 		serviceData.setResponse(responseEntity.getBody());

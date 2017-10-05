@@ -435,12 +435,13 @@ $("#postSubmit").click(function() {
 	$('#overlay').fadeIn();
 	var headerKeyEles = $("input[name='headerKey']")
 	var headerValueEles = $("input[name='headerValue']")
-	var arr=[];
-	for(var i=0;i<headerKeyEles.length; i++){
+	var arr=[{'key': 'Content-Type', 'value': 'application/json'}];
+	for(var i=0;i<headerKeyEles.length; i++) {
 			var obj = {};
-			obj[headerKeyEles[i].value] = headerValueEles[i].value;
+			obj.key = headerKeyEles[i].value;
+			obj.value =  headerValueEles[i].value;
 			arr.push(obj);
-		}
+	}
 	var serviceData = new Object();
 	serviceData.requestUri = $("#requestUri").val();
 	serviceData.requestBody = $("#requestBody").val();

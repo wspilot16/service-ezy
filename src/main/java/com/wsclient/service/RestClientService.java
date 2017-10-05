@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wsclient.model.KeyValue;
 import com.wsclient.model.ServiceData;
 import com.wsclient.util.CustomFactory;
 
@@ -44,7 +45,10 @@ public class RestClientService {
 	public ServiceData post(ServiceData serviceData) throws JsonParseException, JsonMappingException, IOException,
 			RestClientException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		for (KeyValue keyValue : serviceData.getHeaders()) {
+			headers.add(keyValue.getKey(), keyValue.getValue());
+		}
+		//headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
 		CustomFactory customFactory = new CustomFactory();
 		ResponseEntity<String> responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(),

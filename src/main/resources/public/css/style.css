@@ -398,11 +398,31 @@ input[type=checkbox], input[type=radio]{
 #expandView .modal-dialog .modal-content{
 	height: 100%;
 	overflow-y: auto;
-	
 }
 #expandView .modal-dialog .modal-content::-webkit-scrollbar {
   display: none;
 }
 .hide{
 	display:none;
+}
+.expand-response ul li{
+	text-align: left;
+}
+.expand-response ul, .post-response-view ul, .rest-response-view ul{
+	list-style-type: none !important;
+}
+.rest-response-view, .post-response-view{
+  background: #f8f8f8;
+  border: 3px solid #ddd;
+}
+.post-response-view{
+	height: auto;
+	overflow: auto;
+}
+.rest-response-view{
+	height: 800px;
+	overflow: auto;
+}
+.post-response-view::-webkit-scrollbar {
+	  display: none;
 }

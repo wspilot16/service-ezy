@@ -402,7 +402,7 @@
 											<button style="margin-bottom: 15px; margin-top: 15px"
 												class="btn btn-default btn-small pull-right"
 												data-toggle="modal" data-target="#addRestHeaders">
-												<span class="glyphicon glyphicon-plus"></span>Add security headers
+												<span class="glyphicon glyphicon-plus"></span>Headers
 											</button>
 										</div>
 									</div>
@@ -494,16 +494,12 @@
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Add header just to
-						be secured</h4>
+					<h4 class="modal-title" id="myModalLabel">Headers</h4>
 				</div>
 				<div class="modal-body">
 					<form role="form">
 						<div class="form-group">
-							<label class="pull-left" for="selectHeaderType">Select
-								Header Type</label> <select class="form-control" id="restHeaderType">
-								<option value="0" selected >HTTP</option>
-							</select>
+							
 						</div>
 						<table class="table table-hover" id="headerTable">
 						    <thead>
@@ -526,6 +522,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary close" id="addHeaderSubmit" data-dismiss="modal">
 						Proceed</button>
+					</div>
 				</div>
 			</div>
 		</div>

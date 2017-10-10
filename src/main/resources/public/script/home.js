@@ -456,6 +456,7 @@ $("#postSubmit").click(function() {
 		success: function(result, status, xhr) {
 			$('.step2PostShow').css('display',"none");
 			$('.step3PostShow').css('display',"block");
+			//$('.post-response-view').html(result.response);
 			$('.post-response-view.jjson').jJsonViewer(result.response);
 			$('.expand-response').jJsonViewer(result.response);
 		},

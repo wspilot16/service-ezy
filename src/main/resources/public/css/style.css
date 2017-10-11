@@ -408,9 +408,6 @@ input[type=checkbox], input[type=radio]{
 .expand-response ul li{
 	text-align: left;
 }
-.expand-response ul, .post-response-view ul, .rest-response-view ul{
-	list-style-type: none !important;
-}
 .rest-response-view, .post-response-view{
   background: #f8f8f8;
   border: 3px solid #ddd;
@@ -426,3 +423,11 @@ input[type=checkbox], input[type=radio]{
 .post-response-view::-webkit-scrollbar {
 	  display: none;
 }
+/* 
+.jjson-container{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+} 
+.expand-response ul, .post-response-view ul, .rest-response-view ul{
+	list-style-type: none !important;
+}
+*/

@@ -91,3 +91,11 @@
 .jjson-container span {
     position: static !important;
 }
+.jjson-container .close{
+	float:none;
+	font-size:13px;
+    font-weight: 300;
+    line-height: 1;
+    color: rgb(136, 136, 136) !important;
+    opacity: 1.0;
+}

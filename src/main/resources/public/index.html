@@ -83,13 +83,13 @@
 								Service should be up and running for successful execution....phew!!
 						
 							</p>
-							<p>User should know the Endpoint service url, i.e. WSDL url... gotcha!</p>
+							<p>User should know the Endpoint service url, for both Soap and Rest Webservice and Json Request in case of Rest Post, Put and Delete requests.</p>
 						</div>
                         <div role="tabpanel" class="tab-pane" id="limitationsTab"><br>
-							<p>Currently handles Soap WebService .. more to come in coming releases :D</p>
+							<p>Currently handles both Soap and Rest WebServices</p>
 						</div>
                         <div role="tabpanel" class="tab-pane" id="featureTab"><br>
-							<p>Gives response to a SOAP webservice request in a very user friendly manner... Techies, sit back please!!</p>
+							<p>More user friendly User Experience!!</p>
 						</div>
                     </div>
                 </div>
@@ -345,7 +345,7 @@
 					<div class="step2GetShow step-cls">
 						<div class="row col-sm-12">	
 						<ul class="breadcrumb">
-							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="completed" id="step1" onclick="getStep1()"><a href="javascript:void(0);">Step 1</a></li>
 							<li class="active" id="step2" onclick="forwardToStep(2);">
 								<a href="#" >Step 2</a>
 							</li>
@@ -372,7 +372,7 @@
 									<div class="form-bottom">
 									<div class="rest-response-view jjson"></div>
 									</div>
-									<div><span class="showPointer" onclick="forwardToStep(1);">Back</span></div>
+									<div><span class="showPointer" onclick="getStep1()">Back</span></div>
 								</div>
 							</div>
 						</div>
@@ -380,7 +380,7 @@
 					<div class="step2PostShow step-cls">
 						<div class="row col-sm-12">
 						<ul class="breadcrumb">
-							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
+							<li class="completed" id="step1" onclick="getStep1()"><a href="javascript:void(0);">Step 1</a></li>
 							<li class="active" id="step2" onclick="forwardToStep(2);">
 								<a href="#" >Step 2</a>
 							</li>
@@ -442,7 +442,7 @@
 										<button type="submit" id="postSubmit" class="btn post-button">Send</button>
 										</form>
 									</div>
-									<div><span class="showPointer" onclick="forwardToStep(1);">Back</span></div>
+									<div><span class="showPointer" onclick="getStep1()">Back</span></div>
 								</div>
 							</div>
 					</div>
@@ -450,8 +450,8 @@
 					<div class="step3PostShow step-cls">
 						<div class="row col-sm-12">	
 						<ul class="breadcrumb">
-							<li class="completed" id="step1" onclick="forwardToStep(1);"><a href="#">Step 1</a></li>
-							<li class="completed" id="step2" onclick="forwardToStep(2);"><a href="#" >Step 2</a></li>
+							<li class="completed" id="step1" onclick="postStep1()"><a href="javascript:void(0);">Step 1</a></li>
+							<li class="completed" id="step2" onclick="postStep2()"><a href="javascript:void(0);">Step 2</a></li>
 							<li class="active" id="step3" onclick="forwardToStep(3);"><a href="#">Step 3</a></li>
 						</ul>
 						</div>
@@ -476,7 +476,7 @@
 									<div class="form-bottom">
 									<div class="post-response-view jjson"></div>
 									</div>
-									<div><span class="showPointer" onclick="forwardToStep(2);">Back</span></div>
+									<div><span class="showPointer" onclick="postStep2()">Back</span></div>
 								</div>
 							</div>
 						</div>

@@ -54,6 +54,22 @@ function copyToClipboard(elem) {
     return succeed;
 }
 
+function getStep1(){
+	$('.step1Show').css('display',"block");
+	$('.step2GetShow').css('display',"none");
+	$('.step2PostShow').css('display',"none");
+};
+function postStep1(){
+	
+	$('.step3PostShow').css('display',"none");
+	$('.step2PostShow').css('display',"none");
+	$('.step1Show').css('display',"block");
+}
+function postStep2(){
+	$('.step3PostShow').css('display',"none");
+	$('.step2PostShow').css('display',"block");
+	$('.step1Show').css('display',"none");
+}
 function forwardToStep(step){
 	switch(step) {
 		case 1:
@@ -482,7 +498,6 @@ $("#postSubmit").click(function() {
 			$('#overlay').fadeOut();
 		}
 	});
-	
 });
 
 

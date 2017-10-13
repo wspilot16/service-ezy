@@ -426,6 +426,11 @@ function braces() {
 	});
 }
 $("#restSubmit").click(function() {
+	if($('#requestUri').val() === ""){
+		$('#errorPopUp').modal('show');
+		$('#errorPopUp .modal-header h4').text('URL should not be empty');
+		return false;
+	}
 	var requestType =  $("select#postType").val();
 	$('.step1Show').css('display',"none");
 	if(requestType == 'get'){
@@ -462,6 +467,11 @@ $("#restSubmit").click(function() {
 	}
 });
 $("#postSubmit").click(function() {
+	if($('#requestUri').val() === ""){
+		$('#errorPopUp').modal('show');
+		$('#errorPopUp .modal-header h4').text('URL should not be empty');
+		return false;
+	}
 	$('#overlay').fadeIn();
 	var headerKeyEles = $("input[name='headerKey']")
 	var headerValueEles = $("input[name='headerValue']")

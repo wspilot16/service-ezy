@@ -472,6 +472,11 @@ $("#postSubmit").click(function() {
 		$('#errorPopUp .modal-header h4').text('URL should not be empty');
 		return false;
 	}
+	if($('#requestBody').val() === ""){
+		$('#errorPopUp').modal('show');
+		$('#errorPopUp .modal-header h4').text('Post request should not be empty');
+		return false;
+	}
 	$('#overlay').fadeIn();
 	var headerKeyEles = $("input[name='headerKey']")
 	var headerValueEles = $("input[name='headerValue']")

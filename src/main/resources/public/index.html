@@ -37,6 +37,8 @@
 	<div id="overlay">
 		<img src="img/loader.gif" alt="Loading" />
 	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	
 	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
 		id="errorPopUp" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
@@ -203,8 +205,7 @@
 													type="url" name="form-username" placeholder="WSDL URL"
 													class="form-username form-control" id="form-username">
 											</div>
-											<button type="submit" id="wsdlSubmit" class="btn">Hit
-												it. Let me take your URL for a trip.</button>
+											<button type="submit" id="wsdlSubmit" class="btn btn-primary btn-style-right">Send</button>
 										</form>
 									</div>
 								</div>
@@ -333,8 +334,9 @@
 													class="form-username form-control" id="requestUri" required>
 													</div>
 											</div>
-											<button type="button" id="restSubmit" class="btn">Hit
-												it. Let me take your URL for a trip.</button>
+											<div class="btn-style-right">
+											<button type="button" id="restSubmit" class="btn btn-primary">Send</button>
+											</div>
 										</form>
 										
 									</div>
@@ -353,26 +355,16 @@
 						</div>
 						<div class="row align-center">
 						<div class="col-sm-12" id="byte-step1">
-								<p>
-									<strong>Hurray Get Response!</strong>
-								</p>
+							
 								<div class="form-box no-margin-top">
 									<div class="form-top">
 										<div class="form-top-left">
 											<p><strong>Response</strong></p>
 										</div>
-										<div class="form-top-right">
-											<button style="margin-bottom: 15px; margin-top: 15px"
-												class="btn btn-default btn-small pull-right"
-												data-toggle="modal" data-target="#expandView">
-												<span class="glyphicon glyphicon-plus"></span>Expand
-											</button>
-										</div>
 									</div>
 									<div class="form-bottom">
 									<div class="rest-response-view jjson"></div>
 									</div>
-									<div><span class="showPointer" onclick="getStep1()">Back</span></div>
 								</div>
 							</div>
 						</div>
@@ -465,18 +457,10 @@
 										<div class="form-top-left">
 											<p><strong>Response</strong></p>
 										</div>
-										<div class="form-top-right">
-											<button style="margin-bottom: 15px; margin-top: 15px"
-												class="btn btn-default btn-small pull-right"
-												data-toggle="modal" data-target="#expandView">
-												<span class="glyphicon glyphicon-plus"></span>Expand
-											</button>
-										</div>
 									</div>
 									<div class="form-bottom">
 									<div class="post-response-view jjson"></div>
 									</div>
-									<div><span class="showPointer" onclick="postStep2()">Back</span></div>
 								</div>
 							</div>
 						</div>
@@ -523,24 +507,6 @@
 					<button type="button" class="btn btn-primary close" id="addHeaderSubmit" data-dismiss="modal">
 						Proceed</button>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="expandView" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Response</h4>
-				</div>
-				<div class="modal-body expand-response">
-
-				</div>
-				<div class="modal-footer">
 				</div>
 			</div>
 		</div>

@@ -454,7 +454,6 @@ $("#restSubmit").click(function() {
 			success: function(result, status, xhr) {
 				$('.step2GetShow').css('display',"block");
 				$('.rest-response-view.jjson').jJsonViewer(result.response);
-				$('.expand-response').jJsonViewer(result.response);
 				braces();
 			},
 			error: function(err){
@@ -508,7 +507,6 @@ $("#postSubmit").click(function() {
 			$('.step2PostShow').css('display',"none");
 			$('.step3PostShow').css('display',"block");
 			$('.post-response-view.jjson').jJsonViewer(result.response);
-			$('.expand-response').jJsonViewer(result.response);
 			braces();
 		},
 		error: function(err){
@@ -520,5 +518,18 @@ $("#postSubmit").click(function() {
 		}
 	});
 });
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 
 

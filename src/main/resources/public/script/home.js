@@ -144,10 +144,16 @@ function onSuccessElements(keyData, data, methodSelected) {
 	stepComplete('step2');
 	stepRemove('step4');
 	var html = '';
+	var defualt = '';
+	
 	selectedMethod = methodSelected;
-	$.each(keyData, function (key, val) {        
+	$.each(keyData, function (key, val) {
+		var operation = val.xpathElementName;
+		var result = operation.split('/');
+		defualt = '<div><strong style="color: green;">'+ result[3] +'</strong></div>';
 		html += '<div class="form-group row"><div class="col-sm-3"><label class="pull-left tooltipData" data-toggle="tooltip" data-placement="right" title="'+val.xpathElementName+'" for="' + val.elementName + '">' + val.elementName + '</label></div><div class="col-sm-9"><input data-toggle="tooltip" data-placement="right" title="'+val.xpathElementName+'" type="text" name="'+val.elementName+'" class="form-username form-control tooltipData" id="' + val.elementName + '"></div></div>';
 	});
+	$('#dynamicElementForm').append(defualt);
 	$('#dynamicElementForm').append(html);
 	$('.tooltipData').tooltip();
 }

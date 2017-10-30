@@ -27,14 +27,16 @@ import com.wsclient.model.WebRequestElement;
 import com.wsclient.service.SoapRequestGenerator;
 import com.wsclient.service.SoapResponseGenerator;
 import com.wsclient.type.ResponseErrorCodeType;
+import com.wsclient.util.XmlToJsonConverter;
 
 @RestController
 //@Controller
 public class WsClientController {
 	private final Logger logger = LoggerFactory.getLogger(WsClientController.class);
-	
+
 	@Autowired SoapRequestGenerator soapRequestGenerator;
 	@Autowired SoapResponseGenerator soapResponseGenerator;
+	@Autowired XmlToJsonConverter xmlToJsonConverter;
 
 	@RequestMapping(value = "/webMethodList", method = RequestMethod.POST, produces={"application/json"})
 	public ServiceData getWebMethodList (@RequestBody String wsdlUrl) throws UnsupportedEncodingException, XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
@@ -86,6 +88,7 @@ public class WsClientController {
 		}
 		if (serviceData.getErrorCode() == null) {
 			serviceData.setResponseXml(soapResponseXml);
+			serviceData.setResponseJson(xmlToJsonConverter.convert(soapResponseXml));
 			Map<String, String> htmlResponse = soapResponseGenerator.getHtmlResponse(soapResponseXml);
 			serviceData.setResponseMap(htmlResponse);
 		}

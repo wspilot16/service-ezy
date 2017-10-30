@@ -15,6 +15,7 @@ public class ServiceData {
 	private List<WebRequestElement> webRequestElementList;
 	private Map<String, List<WebRequestElement>> webMethodMap;
 	private String responseXml;
+	private String responseJson;
 	private Map<String, String> responseMap;
 	private String responseTime;
 	private String errorDescription;
@@ -47,6 +48,14 @@ public class ServiceData {
 
 	public void setResponseXml(String responseXml) {
 		this.responseXml = responseXml;
+	}
+
+	public String getResponseJson() {
+		return responseJson;
+	}
+
+	public void setResponseJson(String responseJson) {
+		this.responseJson = responseJson;
 	}
 
 	public Map<String, List<WebRequestElement>> getWebMethodMap() {

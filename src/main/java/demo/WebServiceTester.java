@@ -12,11 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wsclient.model.ServiceData;
+import com.wsclient.service.RestClientService;
 import com.wsclient.util.CustomFactory;
 
 public class WebServiceTester {
@@ -34,20 +35,21 @@ public class WebServiceTester {
 	KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
 		ResponseEntity<String> response = null;
 		try{
-			RestTemplate restTemplate = new RestTemplate();
+			RestClientService restClientService = new RestClientService();
 			CustomFactory customFactory = new CustomFactory();
+			ServiceData serviceData = new ServiceData();
+			serviceData.setRequestBody("{\"name\": \"morpheus\","
+					+"\"job\": \"leader\"}");
+			serviceData.setRequestUri("https://reqres.in/api/users");
+			ServiceData responseData = restClientService.post(serviceData);
 			// https://od-api-demo.oxforddictionaries.com:443/api/v1/domains/en/es
 			// String quote = restTemplate
 			// .getForObject("http://services.groupkt.com/state/get/IND/all",
 			// String.class);
-			response = customFactory.getRestTemplate()
-					.getForEntity("https://www.googleapis.com/customsearch/v1", String.class);
-			// log.info(quote);
-			log.info("RESPONSE ENTITY : " + response.getBody());
-			Map<String, String> map = new HashMap<String, String>();
-			ObjectMapper mapper = new ObjectMapper();
-			map = mapper.readValue(response.getBody(), HashMap.class);
-			log.info(String.valueOf(map.size()));
+			/*response = customFactory.getRestTemplate()()
+					.getp("https://www.googleapis.com/customsearch/v1", String.class);
+			*/// log.info(quote);
+			log.info("RESPONSE ENTITY : " + responseData.getResponse());
 		} catch (HttpClientErrorException e) {
 			log.error(e.getResponseBodyAsString());
 		} catch (RestClientException e) {

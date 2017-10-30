@@ -1,0 +1,21 @@
+{  
+   "default":{  
+      "column":[  
+         {  
+            "id":"id1",
+            "title":"Title 1",
+            "value":"val1"
+         },
+         {  
+            "id":"id2",
+            "title":"Title 2",
+            "value":"val2"
+         },
+         {  
+            "id":"id3",
+            "title":"Title 3",
+            "value":"val3"
+         }
+      ]
+   }
+}

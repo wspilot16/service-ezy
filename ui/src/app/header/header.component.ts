@@ -1,3 +1,4 @@
+import { RequestType } from './../request-type.enum';
 import { ServiceData } from './../service-data';
 import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.data = new ServiceData();
     this.data.requestUri = "localhost";
+    //this.requestTypes = RequestType.va
   }
 
   public clicked():void {

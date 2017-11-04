@@ -15,8 +15,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.data = new ServiceData();
-    this.data.requestUri = "localhost";
-    //this.requestTypes = RequestType.va
+    this.data.requestUri = "https://reqres.in/api/users";
+    this.data.requestType = RequestType.GET;
+    this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
 
   public clicked():void {

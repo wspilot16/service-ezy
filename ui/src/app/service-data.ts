@@ -1,3 +1,4 @@
+import { RequestType } from './request-type.enum';
 export class ServiceData {
     wsdlUrl: string;
 	responseXml: string;
@@ -8,7 +9,7 @@ export class ServiceData {
 	response: string;
 	requestUri: string;
 	requestType: RequestType;
-	private requestBody: string;
+	requestBody: string;
 
 	
 }

@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public clicked():void {
-    console.log("clicked"+this.data.requestUri);
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; console.log(responseData);});
   }
 

@@ -22,7 +22,9 @@ public class ServiceData {
 	private Integer errorCode;
 	private String response;
 	private String requestUri;
+	private String requestType;
 	private String requestBody;
+	private String responseType;
 	private Map<String, String> requestMap;
 	private List<KeyValue> headers;
 
@@ -161,12 +163,28 @@ public class ServiceData {
 		this.requestUri = requestUri;
 	}
 
+	public String getRequestType() {
+		return requestType;
+	}
+
+	public void setRequestType(String requestType) {
+		this.requestType = requestType;
+	}
+
 	public String getRequestBody() {
 		return requestBody;
 	}
 
 	public void setRequestBody(String requestBody) {
 		this.requestBody = requestBody;
+	}
+
+	public String getResponseType() {
+		return responseType;
+	}
+
+	public void setResponseType(String responseType) {
+		this.responseType = responseType;
 	}
 
 	public Map<String, String> getRequestMap() {

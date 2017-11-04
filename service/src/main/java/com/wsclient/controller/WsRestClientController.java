@@ -49,7 +49,7 @@ public class WsRestClientController {
 		return serviceData;
 	}
 
-	@RequestMapping(value = "/post", method = RequestMethod.POST, produces = { "application/json" })
+	@RequestMapping(value = "/post", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json" })
 	public ServiceData processPostRequest(@RequestBody ServiceData serviceData) {
 		try {
 			serviceData = restClientService.post(serviceData);

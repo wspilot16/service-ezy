@@ -1,44 +1,38 @@
+
+<div id="#menu1" class="tab-content">
 <form #myForm="ngForm">
 
-<div class="row">
-  <div class="col-md-1">
-    <label for="uri">Uri</label>
+  <div class="row">
+    <div class="col-md-1">
+      <label for="uri">Uri</label>
+    </div>
+    <div class="col-md-9">
+        <div class="form-group">          
+            <input class="form-control" type="text" [(ngModel)]="data.requestUri" name="requestUri" required>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="data.requestType" name="requestType">
+            <option *ngFor="let requestType of requestTypes">{{requestType}}</option>
+          </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+      <button (click)="clicked()">Go</button>
+    </div>
+    
   </div>
-  <div class="col-md-9">
-      <div class="form-group">          
-          <input class="form-control" type="text" [(ngModel)]="data.requestUri" name="requestUri" required>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <textarea style="width: 100%;" [(ngModel)]="data.requestBody" name="requestBody" >{}</textarea>
+    </div>
   </div>
-  <div class="col-md-1">
-      <div class="form-group">
-        <select class="form-control" [(ngModel)]="data.requestType" name="requestType">
-          <option *ngFor="let requestType of requestTypes">{{requestType}}</option>
-        </select>
-      </div>
+
+  <div class="row">
+    <div class="col-md-12">
+        <div>{{data.response}}</div>
+    </div>
   </div>
-  <div class="col-md-1">
-    <button (click)="clicked()">Go</button>
-  </div>
-  
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <textarea style="width: 100%;" [(ngModel)]="data.requestBody" name="requestBody" >{}</textarea>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-      <div>{{data.response}}</div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
 </form>
+</div>

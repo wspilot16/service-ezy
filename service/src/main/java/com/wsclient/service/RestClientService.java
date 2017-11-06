@@ -31,33 +31,20 @@ public class RestClientService {
 	@Autowired
 	CustomFactory customFactory;
 
-	public ServiceData get(ServiceData serviceData) throws JsonParseException, JsonMappingException, IOException,
-			RestClientException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
-		ResponseEntity<String> responseEntity = customFactory.getRestTemplate()
-				.getForEntity(serviceData.getRequestUri(), String.class);
-		serviceData.setResponse(responseEntity.getBody());
-		//serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
-		return serviceData;
-	}
-
 	public ServiceData post(ServiceData serviceData) throws JsonParseException, JsonMappingException, IOException,
 			RestClientException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+		HttpMethod httpMethod = HttpMethod.valueOf(HttpMethod.class, serviceData.getRequestType());
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<String> responseEntity = null;
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		if ("GET".equals(serviceData.getRequestType())) {
-			responseEntity = customFactory.getRestTemplate().getForEntity(serviceData.getRequestUri(), String.class);
-		} else if ("POST".equals(serviceData.getRequestType())) {
-			HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
-			CustomFactory customFactory = new CustomFactory();
-			responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(),
-					HttpMethod.POST, httpEntity, String.class);
-		}
+		HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
+		CustomFactory customFactory = new CustomFactory();
+		responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(),
+				httpMethod, httpEntity, String.class);
 		
 		serviceData.setResponse(responseEntity.getBody());
 		serviceData.setResponseType("json");
 		//serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
-		//RestTemplate restTemplate = customFactory.getRestTemplate();
 		return serviceData;
 	}
 

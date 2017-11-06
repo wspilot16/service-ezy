@@ -27,28 +27,6 @@ public class WsRestClientController {
 	@Autowired
 	RestClientService restClientService;
 
-	@RequestMapping(value = "/get", method = RequestMethod.POST, consumes={"application/json"}, produces = { "application/json" })
-	public ServiceData processGetRequest(@RequestBody ServiceData serviceData) {
-		try {
-			serviceData = restClientService.get(serviceData);
-		} catch (RestClientException e) {
-			logger.error(e.getMessage());
-		} catch (KeyManagementException e) {
-			logger.error(e.getMessage());
-		} catch (NoSuchAlgorithmException e) {
-			logger.error(e.getMessage());
-		} catch (KeyStoreException e) {
-			logger.error(e.getMessage());
-		} catch (JsonParseException e) {
-			logger.error(e.getMessage());
-		} catch (JsonMappingException e) {
-			logger.error(e.getMessage());
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
-		return serviceData;
-	}
-
 	@RequestMapping(value = "/post", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json" })
 	public ServiceData processPostRequest(@RequestBody ServiceData serviceData) {
 		try {

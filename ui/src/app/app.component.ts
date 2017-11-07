@@ -19,7 +19,9 @@ export class AppComponent implements OnInit{
 
   public addTab(): void {
     var tabId = this.tabCtr++;
-    const tabComponent = new TabComponent(this.clientService, tabId, "Tab " + tabId);
+    const tabComponent = new TabComponent(this.clientService);
+    tabComponent.title = "Tab " + tabId;
+    tabComponent.id = tabId;
     tabComponent.active = true;
     this.tabs.forEach(tab => {
       tab.active = false;

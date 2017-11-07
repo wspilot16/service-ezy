@@ -4,12 +4,14 @@ import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'tab',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class TabComponent implements OnInit {
-  constructor(private clientService: ClientService, private id?: number, private title?: string) { }
+  constructor(private clientService?: ClientService) { }
+  title: string;
+  id: number;
   data: ServiceData;
   active: boolean = false;
   requestTypes: RequestType[];

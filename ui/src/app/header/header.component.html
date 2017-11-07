@@ -3,11 +3,9 @@
 <form #myForm="ngForm">
 
   <div class="row">
-    <div class="col-md-1">
-      <label for="uri">Uri</label>
-    </div>
     <div class="col-md-9">
-        <div class="form-group">          
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>      
             <input class="form-control" type="text" [(ngModel)]="data.requestUri" name="requestUri" required>
         </div>
     </div>
@@ -18,8 +16,8 @@
           </select>
         </div>
     </div>
-    <div class="col-md-1">
-      <button (click)="clicked()">Go</button>
+    <div class="col-md-1 btn-group">
+      <button class="btn btn-primary" (click)="clicked()">Go</button>
     </div>
     
   </div>

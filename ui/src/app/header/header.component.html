@@ -1,29 +1,46 @@
 <form #myForm="ngForm">
-
 <div class="row">
-  <div class="col-md-1">
+<div class="col col-md-1">
+  <div class="navbar navbar-inverse navbar-fixed-left">
+  <a class="navbar-brand" href="#">Brand</a>
+  <ul class="nav navbar-nav">
+   <li><a href="#">Link1</a></li>
+   <li><a href="#">Link2</a></li>
+   <li><a href="#">Link3</a></li>
+   <li><a href="#">Link4</a></li>
+   <li><a href="#">Link5</a></li>
+  </ul>
+</div>
+</div>
+<div class="col col-md-11">
+<div class="row">
+  <!-- <div class="col-md-1">
     <label for="uri">Uri</label>
-  </div>
-  <div class="col-md-9">
-      <div class="form-group">          
-          <input class="form-control" type="text" [(ngModel)]="data.requestUri" name="requestUri" required>
-      </div>
-  </div>
-  <div class="col-md-1">
+  </div> -->
+  <div class="col-md-1 select-dropdown">
       <div class="form-group">
         <select class="form-control" [(ngModel)]="data.requestType" name="requestType">
           <option *ngFor="let requestType of requestTypes">{{requestType}}</option>
         </select>
       </div>
   </div>
-  <div class="col-md-1">
+  <div class="col-md-7 url-textbox">
+      <div class="form-group">          
+          <input class="form-control" type="text" [(ngModel)]="data.requestUri" placeholder="Enter URL" name="requestUri" required>
+      </div>
+  </div>
+  <div class="col-md-1 btn-spacing">
     <button class="btn btn-primary" (click)="clicked()">Go</button>
   </div>
   
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <textarea style="width: 100%;" [(ngModel)]="data.requestBody" name="requestBody" >{}</textarea>
+  <div class="col-md-10">
+    <div class="form-box no-margin-top" style="margin-left:15%;">
+      <div class="form-bottom">
+          <textarea class="col-md-12 request-styles" rows="100" cols="100" [(ngModel)]="data.requestBody" placeholder="Enter your Request" name="requestBody">{}</textarea>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -32,13 +49,6 @@
       <div>{{data.response}}</div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
+</div>
+</div>
 </form>

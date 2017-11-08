@@ -1,5 +1,5 @@
 form {
-	padding-top: 100px;
+	padding-top: 30px;
 }
 .request-styles{
 	margin: 0px; 
@@ -36,7 +36,7 @@ form {
     margin-top: 0px;
 }
 .select-dropdown {
-	margin-left: 13%;
+	margin-left: 2%;
 	padding-right: 0px;
     padding-left: 0px;
 }
@@ -46,6 +46,7 @@ form {
 }
 .btn-spacing {
 	padding-left: 0px;
+	margin-left: 20px;
 }
 .navbar-fixed-left {
   width: 140px;

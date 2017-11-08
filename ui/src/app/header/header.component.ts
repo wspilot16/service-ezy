@@ -4,13 +4,16 @@ import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'tab',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  constructor(private clientService: ClientService) { }
+export class TabComponent implements OnInit {
+  constructor(private clientService?: ClientService) { }
+  title: string;
+  id: number;
   data: ServiceData;
+  active: boolean = false;
   requestTypes: RequestType[];
 
   ngOnInit() {
@@ -22,6 +25,14 @@ export class HeaderComponent implements OnInit {
 
   public clicked():void {
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; console.log(responseData);});
+  }
+
+  public getTitle(): string {
+    return this.title;
+  }
+
+  public getId(): number {
+    return this.id;
   }
 
 }

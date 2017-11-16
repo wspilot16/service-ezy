@@ -1,3 +1,4 @@
+import { Protocol } from './../protocol.enum';
 import { RequestType } from './../request-type.enum';
 import { ServiceData } from './../service-data';
 import { ClientService } from './../client.service';
@@ -15,6 +16,7 @@ export class TabComponent implements OnInit {
   data: ServiceData;
   active: boolean = false;
   requestBodyVisible: boolean = false;
+  restProtocolActive: boolean = true;
   requestTypes: RequestType[];
 
   ngOnInit() {
@@ -24,7 +26,7 @@ export class TabComponent implements OnInit {
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
 
-  public clicked(): void {
+  public clicked(): void {console.log(this.data.protocol);
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; console.log(responseData);});
   }
 
@@ -38,7 +40,11 @@ export class TabComponent implements OnInit {
 
   public requestTypeClicked(type): void {
     this.requestBodyVisible = (RequestType.PUT == type || RequestType.POST == type);
-    console.log(this.requestBodyVisible);
+  }
+
+  public protocolClick(): void {
+    this.restProtocolActive = !this.restProtocolActive;
+    this.data.protocol = this.restProtocolActive?Protocol.REST:Protocol.SOAP;
   }
 
 }

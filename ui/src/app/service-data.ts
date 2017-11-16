@@ -1,3 +1,4 @@
+import { Protocol } from './protocol.enum';
 import { RequestType } from './request-type.enum';
 export class ServiceData {
     wsdlUrl: string;
@@ -10,6 +11,5 @@ export class ServiceData {
 	requestUri: string;
 	requestType: RequestType;
 	requestBody: string;
-
-	
+	protocol: Protocol;	
 }

@@ -17,6 +17,14 @@
                 <input class="form-control" type="text" [(ngModel)]="data.requestUri" placeholder="Enter URL" name="requestUri" required>
             </div>
         </div>
+        <div class="col-md-2 btn-group" data-toggle="buttons">
+          <label class="btn  {{restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
+            <input type="checkbox" checked>REST
+          </label>
+          <label class="btn {{!restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
+            <input type="checkbox" >SOAP
+          </label>
+        </div>
         <div class="col-md-1 btn-spacing">
           <button class="btn btn-inverse" (click)="clicked()">Go</button>
         </div> 

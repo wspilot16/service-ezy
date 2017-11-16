@@ -14,6 +14,7 @@ export class TabComponent implements OnInit {
   id: number;
   data: ServiceData;
   active: boolean = false;
+  requestBodyVisible: boolean = false;
   requestTypes: RequestType[];
 
   ngOnInit() {
@@ -23,7 +24,7 @@ export class TabComponent implements OnInit {
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
 
-  public clicked():void {
+  public clicked(): void {
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; console.log(responseData);});
   }
 
@@ -33,6 +34,11 @@ export class TabComponent implements OnInit {
 
   public getId(): number {
     return this.id;
+  }
+
+  public requestTypeClicked(type): void {
+    this.requestBodyVisible = (RequestType.PUT == type || RequestType.POST == type);
+    console.log(this.requestBodyVisible);
   }
 
 }

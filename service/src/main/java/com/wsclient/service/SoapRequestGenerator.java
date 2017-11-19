@@ -9,13 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -40,7 +34,6 @@ import javax.xml.xpath.XPathFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.xerces.dom.DeferredElementImpl;
 import org.apache.xmlbeans.XmlException;
-import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -60,8 +53,8 @@ import com.eviware.soapui.support.SoapUIException;
 import com.eviware.soapui.support.types.StringToStringMap;
 import com.wsclient.exception.CustomException;
 import com.wsclient.model.ServiceData;
+import com.wsclient.model.SoapOperation;
 import com.wsclient.model.WebRequestElement;
-import com.wsclient.type.ResponseErrorCodeType;
 
 @Component
 public class SoapRequestGenerator {
@@ -77,7 +70,7 @@ public class SoapRequestGenerator {
 			project = new WsdlProject();
 			WsdlInterface[] wsdls = doWsdlImport(project, serviceData);
 			WsdlInterface wsdl = wsdls[0];
-			WsdlOperation selectedOperation = getSelectedOperation(wsdl, serviceData.getSelectedMethod());
+			WsdlOperation selectedOperation = getSelectedOperation(wsdl, serviceData.getSoapOperation().getName());
 			WsdlRequest request = selectedOperation.addNewRequest("myRequest");
 			String soapRequestXml = updateGeneratedXml(
 					serviceData.getWebMethodMap().get(serviceData.getSelectedMethod()), selectedOperation.createRequest(true));
@@ -102,7 +95,7 @@ public class SoapRequestGenerator {
 		return soapXmlwithHeader;
 	}
 
-	private WsdlOperation getSelectedOperation(WsdlInterface wsdl, String opertaionName ) {
+	public WsdlOperation getSelectedOperation(WsdlInterface wsdl, String opertaionName ) {
 		for (Operation operation : wsdl.getAllOperations()) {
 			if(StringUtils.containsIgnoreCase(operation.getName(), opertaionName)) {
 				return  (WsdlOperation) wsdl.getOperationByName(operation.getName());
@@ -118,11 +111,13 @@ public class SoapRequestGenerator {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 
 		StringWriter writer = new StringWriter();
-		for(WebRequestElement requestElement : requestElements) {
-			NodeList nodes = (NodeList)xpath.evaluate(
-					requestElement.getXpathElementName(), doc, XPathConstants.NODESET);
-			for (int idx = 0; idx < nodes.getLength(); idx++) {
-				nodes.item(idx).setTextContent(requestElement.getElementValue());
+		if (null != requestElements) {
+			for(WebRequestElement requestElement : requestElements) {
+				NodeList nodes = (NodeList)xpath.evaluate(
+						requestElement.getXpathElementName(), doc, XPathConstants.NODESET);
+				for (int idx = 0; idx < nodes.getLength(); idx++) {
+					nodes.item(idx).setTextContent(requestElement.getElementValue());
+				}
 			}
 		}
 		Transformer xformer = TransformerFactory.newInstance().newTransformer();
@@ -147,23 +142,30 @@ public class SoapRequestGenerator {
 		return webMethodMap;
 	}
 
-	private WsdlInterface[] doWsdlImport(final WsdlProject project, final ServiceData serviceData) throws InterruptedException, ExecutionException, CustomException {
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		WsdlInterface[] wsdlInterface = null;
-		Future<WsdlInterface[]> future = executor.submit(new Callable() {
-
-		    public WsdlInterface[] call() throws Exception {
-		    	return WsdlImporter.importWsdl(project, serviceData.getWsdlUrl());
-		    }
-		});
-		try {
-			wsdlInterface = future.get(TIME_OUT, TimeUnit.SECONDS);
-		} catch (TimeoutException e) {
-		    throw new CustomException(ResponseErrorCodeType.TIMEOUT.getCode(), e.getMessage(), TIME_OUT);
-		} finally {
-			executor.shutdownNow();
+	public List<SoapOperation> getWebMethods(ServiceData serviceData) throws Exception {
+		WsdlProject project = new WsdlProject();
+		WsdlInterface[] wsdls = doWsdlImport(project, serviceData);
+		
+		List<SoapOperation> soapOperations = new ArrayList<>();
+		WsdlInterface wsdl = wsdls[0];
+		for (Operation operation : wsdl.getAllOperations()) {
+			SoapOperation soapOperation = new SoapOperation(operation.getName());
+			String soapRequestXML = ((WsdlOperation) operation).createRequest(true);
+			soapOperation.setRequestTemplate(soapRequestXML);
+			List<WebRequestElement> requestElements = getRequestElements(soapRequestXML);
+			//soapOperation.getRequestElements().addAll(requestElements);
+			soapOperations.add(soapOperation);
 		}
-		return wsdlInterface;
+		return soapOperations;
+	}
+
+	private WsdlInterface[] doWsdlImport(final WsdlProject project, final ServiceData serviceData) throws InterruptedException, ExecutionException, CustomException {
+		try {
+			return WsdlImporter.importWsdl(project, serviceData.getRequestUri());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	private List<WebRequestElement> getRequestElements(String soapRequestXml) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {

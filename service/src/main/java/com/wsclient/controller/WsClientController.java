@@ -75,7 +75,7 @@ public class WsClientController {
 		try {
 			WsdlRequest wsdlRequest = soapRequestGenerator.getSoapRquestXML(serviceData);
 			soapResponseXml = soapResponseGenerator.invokeWebService(wsdlRequest,serviceData);
-		}catch (Exception e) {
+		}catch (Exception e) {e.printStackTrace();
 			if (e instanceof CustomException) {
 				serviceData.setErrorCode(((CustomException) e).getCode());
 				serviceData.setErrorDescription(((CustomException) e).getDescription());

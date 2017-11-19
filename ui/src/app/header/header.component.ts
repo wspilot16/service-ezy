@@ -1,8 +1,9 @@
+import { SoapOperation } from './../soap-operation';
 import { Protocol } from './../protocol.enum';
 import { RequestType } from './../request-type.enum';
 import { ServiceData } from './../service-data';
 import { ClientService } from './../client.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'tab',
@@ -23,11 +24,21 @@ export class TabComponent implements OnInit {
     this.data = new ServiceData();
     this.data.requestUri = "https://reqres.in/api/users";
     this.data.requestType = RequestType.GET;
+    this.data.protocol = Protocol.REST;
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
 
-  public clicked(): void {console.log(this.data.protocol);
-    this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; console.log(responseData);});
+  public goClicked(): void {
+    this.data.response = null;
+    this.data.soapOperations = null;
+    this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
+      if (this.data.protocol == Protocol.SOAP) {
+        this.data.soapOperation = this.data.soapOperations[0];
+        if (this.data.soapOperation) {
+          this.data.requestBody = this.data.soapOperation.requestTemplate;
+        }
+      }
+      console.log(responseData.soapOperation);});
   }
 
   public getTitle(): string {
@@ -42,9 +53,30 @@ export class TabComponent implements OnInit {
     this.requestBodyVisible = (RequestType.PUT == type || RequestType.POST == type);
   }
 
+  public requestTypeChanged(value: any): void {
+    console.log("changed"+value);
+  }
+
   public protocolClick(): void {
     this.restProtocolActive = !this.restProtocolActive;
     this.data.protocol = this.restProtocolActive?Protocol.REST:Protocol.SOAP;
+    
+    if (this.restProtocolActive) {
+      this.data.requestType = RequestType.GET;
+      this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
+    } else {
+      this.data.requestType = RequestType.POST;
+      this.requestTypes = [RequestType.POST];
+    }
+  }
+
+  public operationClick(operationName: string): void {
+    this.data.soapOperations.forEach(soapOperation => {
+      if (soapOperation.name == operationName) {
+        this.data.requestBody = soapOperation.requestTemplate;
+        this.data.soapOperation = soapOperation;
+      }
+    });
   }
 
 }

@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-md-1 select-dropdown">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
-                <option *ngFor="let requestType of requestTypes">{{requestType}}</option>
+              <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)" >
+                <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
               </select>
             </div>
         </div>
@@ -22,14 +22,23 @@
             <input type="checkbox" checked>REST
           </label>
           <label class="btn {{!restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
-            <input type="checkbox" >SOAP
+            <input type="checkbox">SOAP
           </label>
         </div>
         <div class="col-md-1 btn-spacing">
-          <button class="btn btn-inverse" (click)="clicked()">Go</button>
+          <button class="btn btn-inverse" (click)="goClicked()">Go</button>
         </div> 
       </div>
-      <div class="row" [hidden]="!requestBodyVisible">
+
+      <div class="col-md-1 select-dropdown" [hidden]="data.protocol != 'SOAP' ">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="data.soapOperation" name="operation" (change)="operationClick(data.soapOperation)">
+            <option *ngFor="let soapOperation of data.soapOperations">{{soapOperation.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" [hidden]="data.requestType != 'POST' && data.requestType != 'PUT'">
         <div class="col-md-9">
           <div class="form-box no-margin-top" style="margin-left:1%;">
             <div class="form-bottom">

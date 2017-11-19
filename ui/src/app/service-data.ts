@@ -1,3 +1,4 @@
+import { SoapOperation } from './soap-operation';
 import { Protocol } from './protocol.enum';
 import { RequestType } from './request-type.enum';
 export class ServiceData {
@@ -11,5 +12,7 @@ export class ServiceData {
 	requestUri: string;
 	requestType: RequestType;
 	requestBody: string;
-	protocol: Protocol;	
+	protocol: Protocol;
+	soapOperation: SoapOperation;
+	soapOperations: SoapOperation[];
 }

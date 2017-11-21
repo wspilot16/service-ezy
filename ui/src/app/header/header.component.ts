@@ -20,6 +20,7 @@ export class TabComponent implements OnInit {
   restProtocolActive: boolean = true;
   requestTypes: RequestType[];
   selectedOperationName: string;
+  soapOperations: SoapOperation[];
 
   ngOnInit() {
     this.data = new ServiceData();
@@ -31,11 +32,16 @@ export class TabComponent implements OnInit {
   }
 
   public goClicked(): void {
+    if (this.data.protocol == Protocol.SOAP) {
+
+    }
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
       if (this.data.protocol == Protocol.SOAP) {
         this.data.soapOperation = this.data.soapOperations[0];
+        this.soapOperations = this.data.soapOperations;
+        this.data.soapOperations = null;
         if (this.data.soapOperation) {
-          //this.data.requestBody = this.data.soapOperation.requestTemplate;
+          this.data.requestBody = this.data.soapOperation.requestTemplate;
         }
       }
       console.log(responseData.soapOperation);});
@@ -71,14 +77,19 @@ export class TabComponent implements OnInit {
   }
 
   public operationClick(operationName: string): void {
-    console.log(this.data.requestBody);
-    this.data.soapOperations.forEach(soapOperation => {
+    this.soapOperations.forEach(soapOperation => {
       if (soapOperation.name == operationName) {
         this.data.requestBody = soapOperation.requestTemplate;
         this.data.soapOperation = soapOperation;
-        console.log(this.data.requestBody);
       }
     });
+  }
+
+  public onRequestUriChange(): void {
+    if (this.data.protocol == Protocol.SOAP && this.data.requestUri) {
+      console.log(this.data.requestUri);
+      this.goClicked();
+    }
   }
 
 }

@@ -19,23 +19,23 @@ export class TabComponent implements OnInit {
   requestBodyVisible: boolean = false;
   restProtocolActive: boolean = true;
   requestTypes: RequestType[];
+  selectedOperationName: string;
 
   ngOnInit() {
     this.data = new ServiceData();
-    this.data.requestUri = "https://reqres.in/api/users";
+    this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
     this.data.requestType = RequestType.GET;
     this.data.protocol = Protocol.REST;
+    this.data.soapOperation = new SoapOperation();
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
 
   public goClicked(): void {
-    this.data.response = null;
-    this.data.soapOperations = null;
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
       if (this.data.protocol == Protocol.SOAP) {
         this.data.soapOperation = this.data.soapOperations[0];
         if (this.data.soapOperation) {
-          this.data.requestBody = this.data.soapOperation.requestTemplate;
+          //this.data.requestBody = this.data.soapOperation.requestTemplate;
         }
       }
       console.log(responseData.soapOperation);});
@@ -71,10 +71,12 @@ export class TabComponent implements OnInit {
   }
 
   public operationClick(operationName: string): void {
+    console.log(this.data.requestBody);
     this.data.soapOperations.forEach(soapOperation => {
       if (soapOperation.name == operationName) {
         this.data.requestBody = soapOperation.requestTemplate;
         this.data.soapOperation = soapOperation;
+        console.log(this.data.requestBody);
       }
     });
   }

@@ -50,6 +50,7 @@ public class RestClientService {
 				WsdlRequest wsdlRequest;
 				try {
 					wsdlRequest = generator.getSoapRquestXML(serviceData);
+					wsdlRequest.setRequestContent(serviceData.getRequestBody());
 					serviceData.setResponse(converter.convert(soapResponseGenerator.invokeWebService(wsdlRequest,serviceData)));
 				} catch (Exception e) {
 					e.printStackTrace();

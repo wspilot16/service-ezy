@@ -45,8 +45,7 @@ public class SoapResponseGenerator {
 			throws SubmitException, CustomException {
 		// submit the request
 		WsdlSubmit<WsdlRequest> submit = null;
-		submit = request.submit(new WsdlSubmitContext(
-				request), false);
+		submit = request.submit(new WsdlSubmitContext(request), false);
 		logger.debug(":::Request (before hitting webservice):::\n"+request.getRequestContent());
 		
 		// wait for the response

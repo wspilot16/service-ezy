@@ -10,6 +10,11 @@ export class ClientService {
 
   getResponse(data: ServiceData):Promise<ServiceData> {
     console.log(data);
+    if (data.protocol == null) {
+      console.log("Mandatory param 'protocol' is null");
+      return null;
+    }
+
     return this.http.post(this.url, data).map(response => response.json() as ServiceData)
     .toPromise()
     .catch(this.handleError);

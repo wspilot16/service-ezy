@@ -1,1 +1,24 @@
-<textarea></textarea>
+<div [hidden]="!visible">
+    <div class="col-md-3 btn-group" data-toggle="buttons">
+        <label class="btn {{simeplView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
+        <input type="checkbox" checked>Simple
+        </label>
+        <label class="btn {{!simeplView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
+        <input type="checkbox">XML
+        </label>
+    </div>
+    <div class="col-md-12" [hidden]="simpleView">
+        <div class="form-box no-margin-top" style="margin-left:1%;">
+        <div class="form-bottom">
+            <textarea (blur)="onChange()" class="col-md-12 request-styles" rows="100" cols="100" [(ngModel)]="requestBody" placeholder="Enter your Request" name="requestBody"></textarea>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-12" [hidden]="!simpleView">
+        <div class="form-box no-margin-top" style="margin-left:1%;">
+            <div class="form-bottom">
+                <textarea (blur)="onChange()" class="col-md-12 request-styles" rows="100" cols="100" [(ngModel)]="requestBody" placeholder="Enter your Request" name="requestBody"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

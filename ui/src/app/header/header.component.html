@@ -34,7 +34,7 @@
       <button class="btn btn-inverse" (click)="goClicked()">Go</button>
     </div> 
   </div>
-  <div class="row" [hidden]="data.requestBody && this.soapOperation">
+  <!--div class="row" [hidden]="data.requestBody && this.soapOperation">
     <div class="col-md-3 btn-group" data-toggle="buttons">
       <label class="btn {{simeplView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
         <input type="checkbox" checked>Simple
@@ -57,6 +57,9 @@
           </div>
         </div>
       </div>
+  </div-->
+  <div class="row">
+    <request-body [(requestBody)]="data.requestBody" [visible]="data.requestBody != null || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
   <div class="row">
     <div class="col-md-12">

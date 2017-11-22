@@ -34,7 +34,8 @@ export class TabComponent implements OnInit {
 
   public goClicked(): void {
     if (this.data.protocol == Protocol.SOAP) {
-
+      console.log(this.data.soapOperation);
+      this.data.soapOperation.requestTemplate = this.data.requestBody;
     }
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
       if (this.data.protocol == Protocol.SOAP) {
@@ -97,6 +98,10 @@ export class TabComponent implements OnInit {
 
   public toggleRequestView(): void {
     this.simpleView = !this.simpleView;
+  }
+
+  public onNotify(requestBody: string): void {
+    this.data.requestBody = requestBody;
   }
 
 }

@@ -18,9 +18,10 @@ export class TabComponent implements OnInit {
   active: boolean = false;
   requestBodyVisible: boolean = false;
   restProtocolActive: boolean = true;
+  simpleView: boolean = true;
   requestTypes: RequestType[];
-  selectedOperationName: string;
-  soapOperations: SoapOperation[];
+  selectedOperationName: string = Protocol.REST.toString();
+  soapOperations: SoapOperation[] = [];
 
   ngOnInit() {
     this.data = new ServiceData();
@@ -74,6 +75,8 @@ export class TabComponent implements OnInit {
       this.data.requestType = RequestType.POST;
       this.requestTypes = [RequestType.POST];
     }
+    this.selectedOperationName = this.data.protocol.toString();
+    console.log(this.soapOperations.length);
   }
 
   public operationClick(operationName: string): void {
@@ -90,6 +93,10 @@ export class TabComponent implements OnInit {
       console.log(this.data.requestUri);
       this.goClicked();
     }
+  }
+
+  public toggleRequestView(): void {
+    this.simpleView = !this.simpleView;
   }
 
 }

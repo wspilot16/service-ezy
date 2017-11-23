@@ -1,1 +1,24 @@
-<textarea></textarea>
+<div [hidden]="!visible">
+    <div class="col-md-3 btn-group" data-toggle="buttons">
+        <label class="btn {{simpleView?'btn-primary active':'btn-default'}}" (click)="toggleResponseView()">
+            <input type="checkbox" checked>Simple
+        </label>
+        <label class="btn {{!simpleView?'btn-primary active':'btn-default'}}" (click)="toggleResponseView()">
+            <input type="checkbox">Raw
+        </label>
+    </div>
+    <div class="col-md-12" [hidden]="simpleView">
+        <div class="form-box no-margin-top">
+            <div class="form-bottom">
+                <textarea class="col-md-12 request-styles" rows="10" [(ngModel)]="response" ></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" [hidden]="!simpleView">
+        <div class="form-box no-margin-top">
+            <div class="form-bottom">
+                <textarea class="col-md-12 request-styles" rows="10" [(ngModel)]="rawResponse" ></textarea>
+            </div>
+        </div>
+    </div>
+</div>

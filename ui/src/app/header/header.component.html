@@ -34,36 +34,12 @@
       <button class="btn btn-inverse" (click)="goClicked()">Go</button>
     </div> 
   </div>
-  <!--div class="row" [hidden]="data.requestBody && this.soapOperation">
-    <div class="col-md-3 btn-group" data-toggle="buttons">
-      <label class="btn {{simeplView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
-        <input type="checkbox" checked>Simple
-      </label>
-      <label class="btn {{!simeplView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
-        <input type="checkbox">XML
-      </label>
-    </div>
-    <div class="col-md-12" [hidden]="simpleView">
-      <div class="form-box no-margin-top" style="margin-left:1%;">
-        <div class="form-bottom">
-            <textarea class="col-md-12 request-styles" rows="100" cols="100" [(ngModel)]="data.requestBody" placeholder="Enter your Request" name="requestBody">{}</textarea>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12" [hidden]="!simpleView">
-        <div class="form-box no-margin-top" style="margin-left:1%;">
-          <div class="form-bottom">
-              <textarea class="col-md-12 request-styles" rows="100" cols="100" [(ngModel)]="data.requestBody" placeholder="Enter your Request" name="requestBody">{}</textarea>
-          </div>
-        </div>
-      </div>
-  </div-->
   <div class="row">
     <request-body [(requestBody)]="data.requestBody" [visible]="data.requestBody != null || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
   <div class="row">
     <div class="col-md-12">
-        <div>{{data.response}}</div>
+        <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
     </div>
   </div>
 </div>

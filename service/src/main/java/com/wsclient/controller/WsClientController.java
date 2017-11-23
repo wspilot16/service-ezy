@@ -87,8 +87,8 @@ public class WsClientController {
 			logger.error(e.getMessage());
 		}
 		if (serviceData.getErrorCode() == null) {
-			serviceData.setResponseXml(soapResponseXml);
-			serviceData.setResponseJson(xmlToJsonConverter.convert(soapResponseXml));
+			serviceData.setRawResponse(soapResponseXml);
+			serviceData.setResponse(xmlToJsonConverter.convert(soapResponseXml));
 			Map<String, String> htmlResponse = soapResponseGenerator.getHtmlResponse(soapResponseXml);
 			serviceData.setResponseMap(htmlResponse);
 		}

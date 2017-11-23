@@ -22,4 +22,8 @@ export class RequestBodyComponent implements OnInit {
     console.log("changed "+this.requestBody);
     this.notify.emit(this.requestBody);
   }
+
+  toggleRequestView(): void {
+    this.simpleView = !this.simpleView;
+  }
 }

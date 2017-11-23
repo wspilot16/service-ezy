@@ -14,13 +14,12 @@ public class ServiceData {
 	private Map<String, String> httpRequestHeader;
 	private List<WebRequestElement> webRequestElementList;
 	private Map<String, List<WebRequestElement>> webMethodMap;
-	private String responseXml;
-	private String responseJson;
 	private Map<String, String> responseMap;
 	private String responseTime;
 	private String errorDescription;
 	private Integer errorCode;
 	private String response;
+	private String rawResponse;
 	private String requestUri;
 	private String requestType;
 	private String requestBody;
@@ -47,20 +46,12 @@ public class ServiceData {
 		this.errorCode = errorCode;
 	}
 
-	public String getResponseXml() {
-		return responseXml;
+	public String getRawResponse() {
+		return rawResponse;
 	}
 
-	public void setResponseXml(String responseXml) {
-		this.responseXml = responseXml;
-	}
-
-	public String getResponseJson() {
-		return responseJson;
-	}
-
-	public void setResponseJson(String responseJson) {
-		this.responseJson = responseJson;
+	public void setRawResponse(String rawResponse) {
+		this.rawResponse = rawResponse;
 	}
 
 	public Map<String, List<WebRequestElement>> getWebMethodMap() {

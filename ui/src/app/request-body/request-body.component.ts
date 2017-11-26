@@ -8,18 +8,15 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class RequestBodyComponent implements OnInit {
   @Input() requestBody: string;
   simpleView: boolean = false;
-  @Input() visible: boolean = true;
+  @Input() visible: boolean;
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.requestBody);
-    console.log(this.visible);
   }
 
   public onChange(): void {
-    console.log("changed "+this.requestBody);
     this.notify.emit(this.requestBody);
   }
 

@@ -69,6 +69,7 @@ public class RestClientService {
 					httpMethod, httpEntity, String.class);
 			
 			serviceData.setResponse(responseEntity.getBody());
+			serviceData.setRawResponse(responseEntity.getBody());
 			serviceData.setResponseType("json");
 		}
 		

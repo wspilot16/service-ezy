@@ -35,14 +35,14 @@
     </div> 
   </div>
   <div class="row">
-    <request-body [(requestBody)]="data.requestBody" [visible]="data.requestBody != null || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
+    <request-body [(requestBody)]="data.requestBody" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
   <div class="row">
     <div class="col-md-12">
         <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
+        <!-- <app-jjviewer [json]="data.response" [visible]="data.response != null">{{data.response}}</app-jjviewer> -->
     </div>
   </div>
 </div>
 </form>
 </div>
-

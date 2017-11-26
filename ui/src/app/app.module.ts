@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { TabComponent } from './header/header.component';
 import { RequestBodyComponent } from './request-body/request-body.component';
 import { ResponseBodyComponent } from './response-body/response-body.component';
+import { JjviewerComponent } from './jjviewer/jjviewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabComponent,
     RequestBodyComponent,
-    ResponseBodyComponent
+    ResponseBodyComponent,
+    JjviewerComponent
   ],
   imports: [
     BrowserModule,

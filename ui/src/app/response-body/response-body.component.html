@@ -7,17 +7,17 @@
             <input type="checkbox">Raw
         </label>
     </div>
-    <div class="col-md-12" [hidden]="simpleView">
-        <div class="form-box no-margin-top">
-            <div class="form-bottom">
-                <textarea class="col-md-12 request-styles" rows="10" [(ngModel)]="response" ></textarea>
-            </div>
-        </div>
-    </div>
     <div class="col-md-12" [hidden]="!simpleView">
         <div class="form-box no-margin-top">
             <div class="form-bottom">
                 <textarea class="col-md-12 request-styles" rows="10" [(ngModel)]="rawResponse" ></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" [hidden]="simpleView">
+        <div class="form-box no-margin-top">
+            <div class="form-bottom">
+                <app-jjviewer [json]="response" [visible]="response != null"></app-jjviewer>
             </div>
         </div>
     </div>

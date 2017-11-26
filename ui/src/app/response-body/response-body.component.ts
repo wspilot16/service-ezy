@@ -19,7 +19,6 @@ export class ResponseBodyComponent implements OnInit {
 
   toggleResponseView(): void {
     this.simpleView = !this.simpleView;
-    console.log(this.simpleView);
   }
 
 }

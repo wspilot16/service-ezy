@@ -25,7 +25,8 @@ export class TabComponent implements OnInit {
 
   ngOnInit() {
     this.data = new ServiceData();
-    this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
+    //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
+    this.data.requestUri = "https://reqres.in/api/users?page=2";
     this.data.requestType = RequestType.GET;
     this.data.protocol = Protocol.REST;
     this.data.soapOperation = new SoapOperation();
@@ -34,7 +35,7 @@ export class TabComponent implements OnInit {
 
   public goClicked(): void {
     if (this.data.protocol == Protocol.SOAP) {
-      console.log(this.data.soapOperation);
+      //console.log(this.data.soapOperation);
       this.data.soapOperation.requestTemplate = this.data.requestBody;
     }
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
@@ -46,7 +47,8 @@ export class TabComponent implements OnInit {
           this.data.requestBody = this.data.soapOperation.requestTemplate;
         }
       }
-      console.log(responseData.soapOperation);});
+      //console.log(responseData.soapOperation);
+    });
   }
 
   public getTitle(): string {
@@ -77,7 +79,6 @@ export class TabComponent implements OnInit {
       this.requestTypes = [RequestType.POST];
     }
     this.selectedOperationName = this.data.protocol.toString();
-    console.log(this.soapOperations.length);
   }
 
   public operationClick(operationName: string): void {

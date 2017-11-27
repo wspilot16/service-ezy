@@ -15,8 +15,4 @@ export class ResponseBodyComponent {
   toggleResponseView(): void {
     this.simpleView = !this.simpleView;
   }
-
-  ngAfterViewChecked(): void {
-    console.log("here"+this.response);
-  }
 }

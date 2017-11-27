@@ -25,7 +25,7 @@
             {{tab.title}}
           </a>
         </li>
-        <li>
+        <li *ngIf="!maxTabs">
           <a (click)="addOnclick()">
               <span class="glyphicon glyphicon-plus-sign"></span>
           </a>

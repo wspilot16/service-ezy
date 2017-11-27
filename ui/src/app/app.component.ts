@@ -8,9 +8,11 @@ import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRe
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{ 
-  title = 'Demo Ezy';
+  title = 'DemoEzy';
   tabs: TabComponent[] = [];
   tabCtr: number = 1;
+  maxTabs: boolean = false;
+  MAX_ALLOWABLE_TABS: number = 10;
   constructor(private clientService: ClientService) {}
 
   public addOnclick(): void {
@@ -28,6 +30,9 @@ export class AppComponent implements OnInit{
     })
     this.tabs.push(tabComponent);
     this.tabClick(tabComponent);
+    if (this.tabs.length == this.MAX_ALLOWABLE_TABS) {
+      this.maxTabs = true;
+    }
   }
 
   public ngOnInit(): void {

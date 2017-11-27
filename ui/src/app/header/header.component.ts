@@ -36,13 +36,15 @@ export class TabComponent implements OnInit {
   public goClicked(): void {
     if (this.data.protocol == Protocol.SOAP) {
       //console.log(this.data.soapOperation);
-      this.data.soapOperation.requestTemplate = this.data.requestBody;
+      //this.data.soapOperation.requestTemplate = this.data.requestBody;
     }
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
       if (this.data.protocol == Protocol.SOAP) {
-        this.data.soapOperation = this.data.soapOperations[0];
-        this.soapOperations = this.data.soapOperations;
-        this.data.soapOperations = null;
+        if (this.data.soapOperations && this.data.soapOperations.length > 0) {
+          this.data.soapOperation = this.data.soapOperations[0];
+          this.soapOperations = this.data.soapOperations;
+          this.data.soapOperations = null;
+        }
         if (this.data.soapOperation) {
           this.data.requestBody = this.data.soapOperation.requestTemplate;
         }

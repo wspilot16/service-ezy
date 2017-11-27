@@ -10,7 +10,7 @@ export class RequestBodyComponent implements OnInit {
   simpleView: boolean = false;
   @Input() visible: boolean;
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-
+  @Input() requestType: String;
   constructor() { }
 
   ngOnInit() {

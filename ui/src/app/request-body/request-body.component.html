@@ -1,13 +1,6 @@
 <div [hidden]="!visible">
     <label style="margin-left: 1.5%;">Request</label><br>  
-    <div class="col-md-10" *ngIf="requestType == 'REST'">
-        <div class="form-box no-margin-top">
-            <div class="form-bottom">
-                <textarea (blur)="onChange()" class="col-md-12 request-styles" rows="10" [(ngModel)]="requestBody" placeholder="Enter your Request" name="requestBody"></textarea>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="responseType == 'SOAP'">
+
         <div class="col-md-3 btn-group" data-toggle="buttons">
             <label class="btn {{simpleView?'btn-primary active':'btn-default'}}" (click)="toggleRequestView()">
             <input type="checkbox" checked>Simple
@@ -30,5 +23,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

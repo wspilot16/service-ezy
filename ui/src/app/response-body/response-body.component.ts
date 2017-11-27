@@ -11,7 +11,6 @@ export class ResponseBodyComponent implements OnInit {
   @Input() response: string;
   simpleView: boolean = true;
   @Input() visible: boolean = false;
-  @Input() responseType: string;
 
   constructor() { }
 

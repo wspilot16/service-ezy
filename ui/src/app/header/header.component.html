@@ -36,12 +36,12 @@
   </div>
 
   <div class="row" style="margin-left: 2%;">
-    <request-body [(requestBody)]="data.requestBody" [(requestType)] = "data.protocol" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
+    <request-body [(requestBody)]="data.requestBody" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
 
   <div class="row">
     <div class="col-md-12" style="margin-left: 2%;">
-        <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null" [(responseType)] = "data.protocol"></response-body>
+        <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
         <!-- <app-jjviewer [json]="data.response" [visible]="data.response != null">{{data.response}}</app-jjviewer> -->
     </div>
   </div>

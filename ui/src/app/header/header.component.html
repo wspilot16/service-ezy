@@ -2,7 +2,7 @@
 <div id="#menu1" class="tab-content">
 <form #myForm="ngForm">
 <div class="row">
-  <div class="col col-md-12">
+  <div class="col col-md-12" style="display: flex;">
     <div class="col-md-1 select-dropdown" [hidden]="selectedOperationName == 'SOAP'">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
@@ -10,7 +10,7 @@
           </select>
         </div>
     </div>
-    <div class="col-md-3 btn-group" data-toggle="buttons">
+    <div class="col-md-2 btn-group" data-toggle="buttons">
       <label class="btn  {{restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
         <input type="checkbox" checked>REST
       </label>
@@ -34,11 +34,13 @@
       <button class="btn btn-inverse" (click)="goClicked()">Go</button>
     </div> 
   </div>
-  <div class="row">
+  <div [hidden]="data.protocol != 'REST'">
+  <div class="row" style="margin-left: 2%;">
     <request-body [(requestBody)]="data.requestBody" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
+</div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-left: 2%;">
         <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
         <!-- <app-jjviewer [json]="data.response" [visible]="data.response != null">{{data.response}}</app-jjviewer> -->
     </div>

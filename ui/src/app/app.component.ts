@@ -8,7 +8,7 @@ import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRe
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{ 
-  title = 'Demo Ezy';
+  title = 'DemoEzy';
   tabs: TabComponent[] = [];
   tabCtr: number = 1;
   constructor(private clientService: ClientService) {}

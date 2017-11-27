@@ -5,20 +5,18 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './response-body.component.html',
   styleUrls: ['./response-body.component.css']
 })
-export class ResponseBodyComponent implements OnInit {
+export class ResponseBodyComponent {
 
   @Input() rawResponse: string;
   @Input() response: string;
   simpleView: boolean = true;
   @Input() visible: boolean = false;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   toggleResponseView(): void {
     this.simpleView = !this.simpleView;
   }
 
+  ngAfterViewChecked(): void {
+    console.log("here"+this.response);
+  }
 }

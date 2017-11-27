@@ -22,6 +22,7 @@ export class TabComponent implements OnInit {
   requestTypes: RequestType[];
   selectedOperationName: string = Protocol.REST.toString();
   soapOperations: SoapOperation[] = [];
+  requestBody: string;
 
   ngOnInit() {
     this.data = new ServiceData();
@@ -34,10 +35,8 @@ export class TabComponent implements OnInit {
   }
 
   public goClicked(): void {
-    if (this.data.protocol == Protocol.SOAP) {
-      //console.log(this.data.soapOperation);
-      //this.data.soapOperation.requestTemplate = this.data.requestBody;
-    }
+    this.data.soapOperation.requestTemplate = this.requestBody;
+    this.data.requestBody = this.requestBody;
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
       if (this.data.protocol == Protocol.SOAP) {
         if (this.data.soapOperations && this.data.soapOperations.length > 0) {
@@ -45,11 +44,10 @@ export class TabComponent implements OnInit {
           this.soapOperations = this.data.soapOperations;
           this.data.soapOperations = null;
         }
-        if (this.data.soapOperation) {
-          this.data.requestBody = this.data.soapOperation.requestTemplate;
+        if (this.data.soapOperation && !this.requestBody) {
+          this.requestBody = this.data.soapOperation.requestTemplate;
         }
       }
-      //console.log(responseData.soapOperation);
     });
   }
 
@@ -86,7 +84,7 @@ export class TabComponent implements OnInit {
   public operationClick(operationName: string): void {
     this.soapOperations.forEach(soapOperation => {
       if (soapOperation.name == operationName) {
-        this.data.requestBody = soapOperation.requestTemplate;
+        this.requestBody = soapOperation.requestTemplate;
         this.data.soapOperation = soapOperation;
       }
     });
@@ -104,7 +102,7 @@ export class TabComponent implements OnInit {
   }
 
   public onNotify(requestBody: string): void {
-    this.data.requestBody = requestBody;
+    this.requestBody = requestBody;
   }
 
 }

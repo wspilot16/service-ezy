@@ -36,7 +36,7 @@
   </div>
 
   <div class="row" style="margin-left: 2%;">
-    <request-body [(requestBody)]="data.requestBody" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
+    <request-body [(requestBody)]="requestBody" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
 
   <div class="row">

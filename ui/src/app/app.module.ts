@@ -10,6 +10,7 @@ import { TabComponent } from './header/header.component';
 import { RequestBodyComponent } from './request-body/request-body.component';
 import { ResponseBodyComponent } from './response-body/response-body.component';
 import { JjviewerComponent } from './jjviewer/jjviewer.component';
+import { SimpleRequestBodyComponent } from './simple-request-body/simple-request-body.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { JjviewerComponent } from './jjviewer/jjviewer.component';
     TabComponent,
     RequestBodyComponent,
     ResponseBodyComponent,
-    JjviewerComponent
+    JjviewerComponent,
+    SimpleRequestBodyComponent
   ],
   imports: [
     BrowserModule,

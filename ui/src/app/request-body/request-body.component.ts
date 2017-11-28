@@ -10,6 +10,8 @@ export class RequestBodyComponent implements OnInit {
   simpleView: boolean = false;
   @Input() visible: boolean;
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  @Input() htmlToAdd: string;
+  @Input() requestType: string;
   constructor() { }
 
   ngOnInit() {

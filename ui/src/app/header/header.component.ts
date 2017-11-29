@@ -5,6 +5,8 @@ import { ServiceData } from './../service-data';
 import { ClientService } from './../client.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+declare var $;
+
 @Component({
   selector: 'tab',
   templateUrl: './header.component.html',
@@ -35,6 +37,7 @@ export class TabComponent implements OnInit {
   }
 
   public goClicked(): void {
+    $('#overlay').fadeIn();
     this.data.soapOperation.requestTemplate = this.requestBody;
     this.data.requestBody = this.requestBody;
     this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
@@ -48,6 +51,7 @@ export class TabComponent implements OnInit {
           this.requestBody = this.data.soapOperation.requestTemplate;
         }
       }
+      $('#overlay').fadeOut();
     });
   }
 

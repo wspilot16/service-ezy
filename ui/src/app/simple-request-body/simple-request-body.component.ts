@@ -14,7 +14,7 @@ export class SimpleRequestBodyComponent {
   constructor(private el: ElementRef) {  }
 
   ngOnInit() {
-  	this.json = {"Header": null,"Body": {"Add": {"intA": "1","intB": "2"}}};
+  	this.json = {"Header": null,"Body": {"Add": {"intA": "","intB": ""}}};
 	let jsonResult = Object.keys(this.json["Body"]);
 	let jsonList = {};
 	let operation;

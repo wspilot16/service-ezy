@@ -43,7 +43,7 @@
 
   <div class="row">
     <div class="col-md-12" style="margin-left: 2%;">
-        <response-body [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
+        <response-body [requestType]="data.protocol" [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
     </div>
   </div>
 </div>

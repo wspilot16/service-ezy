@@ -1,3 +1,4 @@
+import { Protocol } from './../protocol.enum';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,6 +10,7 @@ export class ResponseBodyComponent {
 
   @Input() rawResponse: string;
   @Input() response: string;
+  @Input() requestType: Protocol;
   simpleView: boolean = true;
   @Input() visible: boolean = false;
 

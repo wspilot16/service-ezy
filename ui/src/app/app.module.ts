@@ -11,6 +11,7 @@ import { RequestBodyComponent } from './request-body/request-body.component';
 import { ResponseBodyComponent } from './response-body/response-body.component';
 import { JjviewerComponent } from './jjviewer/jjviewer.component';
 import { SimpleRequestBodyComponent } from './simple-request-body/simple-request-body.component';
+import { SimpleResponseViewComponent } from './simple-response-view/simple-response-view.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SimpleRequestBodyComponent } from './simple-request-body/simple-request
     RequestBodyComponent,
     ResponseBodyComponent,
     JjviewerComponent,
-    SimpleRequestBodyComponent
+    SimpleRequestBodyComponent,
+    SimpleResponseViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,5 @@
-
+<div *ngIf="inputs != null">
+  <div *ngFor="let input of inputs" >
+    <label>{{input.key}}</label><input (blur)="onblur(input)" [(ngModel)]="input.value"><br>
+  </div>  
+</div>

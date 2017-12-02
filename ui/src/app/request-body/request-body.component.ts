@@ -14,8 +14,7 @@ export class RequestBodyComponent implements OnInit {
   @Input() requestType: string;
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public onChange(): void {
     this.notify.emit(this.requestBody);
@@ -23,5 +22,10 @@ export class RequestBodyComponent implements OnInit {
 
   toggleRequestView(): void {
     this.simpleView = !this.simpleView;
+  }
+
+  public onNotify(requestBody: string): void {
+    this.requestBody = requestBody;
+    this.onChange();
   }
 }

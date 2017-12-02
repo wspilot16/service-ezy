@@ -20,7 +20,7 @@
              <div class="form-box no-margin-top">
             <div class="form-bottom">
                <div *ngIf="requestType == 'SOAP'">
-                    <simple-request-body class="simpleRequest" [requestXml]="requestBody"></simple-request-body>
+                    <simple-request-body class="simpleRequest" [(requestBody)]="requestBody" (notify)="onNotify($event)"></simple-request-body>
                </div>
                <div *ngIf="requestType != 'SOAP'">
                     <textarea (blur)="onChange()" class="col-md-12 request-styles" rows="10" [(ngModel)]="requestBody" placeholder="Enter your Request" name="requestBody"></textarea>

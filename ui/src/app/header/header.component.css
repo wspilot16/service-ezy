@@ -83,3 +83,15 @@ form {
         padding-top: 25%;
         opacity: 0.7;
     }
+.header{
+  display: flex;
+}
+.request-header{
+  width: 10%;
+}
+.request-body{
+  margin-left: 2%;
+}
+.response-body{
+  margin-left: 1%;
+}

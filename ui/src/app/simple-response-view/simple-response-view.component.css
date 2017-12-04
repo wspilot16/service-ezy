@@ -1,0 +1,11 @@
+input[readonly]
+{
+    border: none;
+    background: none;
+}
+.key{
+	color: #204a87;
+}
+.value{
+	color: #4e9a06;
+}

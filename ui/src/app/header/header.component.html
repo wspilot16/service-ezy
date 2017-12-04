@@ -4,8 +4,8 @@
 <div id="#menu1" class="tab-content">
 <form #myForm="ngForm">
 <div class="row">
-  <div class="col col-md-12" style="display: flex;">
-    <div class="col-md-1 select-dropdown" [hidden]="selectedOperationName == 'SOAP'">
+  <div class="col col-md-12 header">
+    <div class="col-md-1 select-dropdown request-header" [hidden]="data.protocol == 'SOAP'">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
             <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
@@ -37,12 +37,12 @@
     </div> 
   </div>
 
-  <div class="row" style="margin-left: 2%;">
+  <div class="row request-body">
     <request-body [(requestBody)]="requestBody" [(requestType)]="data.protocol" [visible]="data.requestType == 'POST' || data.requestType=='PUT' || data.protocol == 'SOAP'" (notify)="onNotify($event)"></request-body>
   </div>
 
-  <div class="row">
-    <div class="col-md-12" style="margin-left: 2%;">
+  <div class="row response-body">
+    <div class="col-md-12">
         <response-body [requestType]="data.protocol" [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
     </div>
   </div>

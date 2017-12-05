@@ -10,7 +10,9 @@ declare var $;
 })
 export class SimpleRequestBodyComponent implements OnInit {
 	@Input() requestBody: string;
+	filter: string;
 	inputs: KeyValue[] = [];
+	filteredInputs: KeyValue[] = [];
 	parser: DOMParser = new DOMParser();
 	@Output() notify: EventEmitter<string> = new EventEmitter<string>();
   constructor(private el: ElementRef) {  }
@@ -21,6 +23,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 		if (this.requestBody) {
 			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
 			this.parseLeaf(root);
+			this.filteredInputs = this.inputs;
 		}
 	}
 
@@ -75,5 +78,15 @@ export class SimpleRequestBodyComponent implements OnInit {
 			this.notify.emit(this.requestBody);
 		}
 	}
+
+  public onFilterChange(): void {
+		const that = this;
+		that.filteredInputs = [];
+    this.inputs.forEach(function(input) {
+			if (input.key.toLowerCase().indexOf(that.filter.toLowerCase()) != -1) {
+				that.filteredInputs.push(input);
+			}
+		});
+  }
 }
 

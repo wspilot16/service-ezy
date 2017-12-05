@@ -1,7 +1,7 @@
 <div *ngIf="inputs != null">
 <div class="col-md-3">
   <div class="form-group span6" *ngFor="let input of inputs" >
-    <label>{{input.key}}</label><input class="form-control" required (blur)="onblur(input)" [(ngModel)]="input.value"><br><br>
+    <label>{{input.key}}</label><input class="form-control" required (blur)="onblur(input)" title="{{input.fullPath}}" [(ngModel)]="input.value"><br><br>
   </div> 
  </div> 
 </div>

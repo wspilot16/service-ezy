@@ -24,14 +24,15 @@ export class SimpleRequestBodyComponent implements OnInit {
 		}
 	}
 
-	private addInput(key: string, value: string): void {
+	private addInput(key: string, value: string, fullpath: string): void {
 		const kv: KeyValue = new KeyValue();
 		kv.key = key;
 		kv.value = value;
+		kv.fullPath = fullpath;
 		this.inputs[this.inputs.length] = kv;
 	}
 
-	parseLeaf(root: Node, depth?: number, key?): void {
+	parseLeaf(root: Node, depth?: number, key?, fullpath?: string): void {
 		if (!root || depth > 4) {
 			return;
 		}
@@ -45,10 +46,10 @@ export class SimpleRequestBodyComponent implements OnInit {
 					}
 				});
 				if (!exists) {
-					this.addInput(key, child.nodeValue);
+					this.addInput(key, child.nodeValue, fullpath);
 				}
 			} else {
-				this.parseLeaf(child, depth++, child.localName);
+				this.parseLeaf(child, depth++, child.localName, fullpath==undefined?'':fullpath+'/'+child.localName);
 			}
 		}
 	}

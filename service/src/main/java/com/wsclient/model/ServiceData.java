@@ -14,7 +14,7 @@ public class ServiceData {
 	private Map<String, String> httpRequestHeader;
 	private List<WebRequestElement> webRequestElementList;
 	private Map<String, List<WebRequestElement>> webMethodMap;
-	private Map<String, String> responseMap;
+	//private Map<String, String> responseMap;
 	private String responseTime;
 	private String errorDescription;
 	private Integer errorCode;
@@ -110,13 +110,13 @@ public class ServiceData {
 		this.bindingName = bindingName;
 	}
 
-	public Map<String, String> getResponseMap() {
+	/*public Map<String, String> getResponseMap() {
 		return responseMap;
 	}
 
 	public void setResponseMap(Map<String, String> responseMap) {
 		this.responseMap = responseMap;
-	}
+	}*/
 
 	public String getSoapHeader() {
 		return soapHeader;

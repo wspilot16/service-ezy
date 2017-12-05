@@ -1,5 +1,6 @@
 package com.wsclient.util;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class XmlToJsonConverter {
 	@Autowired ObjectMapper mapper;
 
-	public String convert(String xml) throws JsonProcessingException {
+	public String convert(String xml) throws JsonProcessingException, JSONException {
 		JSONObject jsonObject = XML.toJSONObject(xml);
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = mapper.writer().withDefaultPrettyPrinter().writeValueAsString(jsonObject.toString());

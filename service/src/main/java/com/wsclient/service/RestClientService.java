@@ -73,7 +73,7 @@ public class RestClientService {
 			serviceData.setResponseType("json");
 		}
 		
-		//serviceData.setResponseMap(getMapFromJsonString(responseEntity.getBody()));
+		//serviceData.setResponseMap(getMapFromJsonString(serviceData.getRawResponse()));
 		return serviceData;
 	}
 

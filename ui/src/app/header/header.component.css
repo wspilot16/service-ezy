@@ -97,4 +97,5 @@ form {
 }
 #uri-error{
   color: red;
+  display: none;
 }

@@ -38,6 +38,14 @@ export class TabComponent implements OnInit {
   }
 
   public goClicked(): void {
+    var uri = $('#requestUri').val();
+    var pattern = /^(http|https):\/\/[^ "]+$/;
+    var valid = pattern.test(uri);
+    if(!valid){
+      $('#uri-error').css('display',"block");
+    }
+  else{
+    $('#uri-error').css('display',"none");
     $('#overlay').fadeIn();
     this.data.soapOperation.requestTemplate = this.requestBody;
     this.data.requestBody = this.requestBody;
@@ -54,6 +62,7 @@ export class TabComponent implements OnInit {
       }
       $('#overlay').fadeOut();
     });
+  }
   }
   enableGo(event:any) {
     var uri = $('#requestUri').val();

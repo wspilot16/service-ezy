@@ -1,10 +1,9 @@
-<div class="form-group">
-    <input placeholder="Search" type="text" class="form-control" [(ngModel)]="filter" (ngModelChange)="onFilterChange()" /><br>
+<div class="form-group col-md-3" style="float: right;">
+    <input placeholder="Search Key" type="text" class="form-control" [(ngModel)]="filter" (ngModelChange)="onFilterChange()" /><br>
 </div>
 
 <div *ngIf="inputs != null">
 <div class="col-md-3">
-  
   <div class="form-group span6" *ngFor="let input of filteredInputs" >
     <label>{{input.key}}</label><input class="form-control" required (blur)="onblur(input)" title="{{input.fullPath}}" [(ngModel)]="input.value"><br><br>
   </div> 

@@ -26,8 +26,9 @@
     </div>
     <div class="col-md-4 url-textbox">
         <div class="form-group">          
-            <input class="form-control" type="text" id="requestUri" required [(ngModel)]="data.requestUri" placeholder="Enter URL" name="requestUri" (blur)="onRequestUriChange()">
+            <input class="form-control" type="text" id="requestUri" required [(ngModel)]="data.requestUri" placeholder="Enter URL" list="searchList" name="requestUri" (blur)="onRequestUriChange()">
             <div id="uri-error" hidden>Please enter valid URI</div>
+            <datalist id="searchList"></datalist>
         </div>
     </div>
     <div class="col-md-2 select-dropdown" [hidden]="data.protocol != 'SOAP' || soapOperations.length <= 0">

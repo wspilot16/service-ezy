@@ -95,3 +95,6 @@ form {
 .response-body{
   margin-left: 1%;
 }
+#uri-error{
+  color: red;
+}

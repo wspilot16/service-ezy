@@ -1,6 +1,10 @@
 <div id="overlay" hidden>
     <img src="/assets/loader.gif" alt="Loading" />
-  </div>
+</div>
+<div class="alert alert-danger alert-dismissable hidden">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Error!</strong> <span>Error banner for handling exceptions.</span>
+</div>
 <div id="#menu1" class="tab-content">
 <form #myForm="ngForm">
 <div class="row">
@@ -22,7 +26,8 @@
     </div>
     <div class="col-md-4 url-textbox">
         <div class="form-group">          
-            <input class="form-control" type="text" [(ngModel)]="data.requestUri" placeholder="Enter URL" name="requestUri" (blur)="onRequestUriChange()" required>
+            <input class="form-control" type="text" id="requestUri" (change)="enableGo($event)" required [(ngModel)]="data.requestUri" placeholder="Enter URL" name="requestUri" (blur)="onRequestUriChange()" required>
+            <div id="uri-error" hidden>Please enter valid URI</div>
         </div>
     </div>
     <div class="col-md-2 select-dropdown" [hidden]="data.protocol != 'SOAP' || soapOperations.length <= 0">
@@ -33,7 +38,7 @@
       </div>
     </div>
     <div class="col-md-1 btn-spacing">
-      <button class="btn btn-inverse" (click)="goClicked()">Go</button>
+      <button class="btn btn-primary" id="goButton" disabled (click)="goClicked()">Go</button>
     </div> 
   </div>
 

@@ -29,7 +29,8 @@ export class TabComponent implements OnInit {
   ngOnInit() {
     this.data = new ServiceData();
     //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
-    this.data.requestUri = "https://reqres.in/api/users?page=2";
+    //this.data.requestUri = "https://reqres.in/api/users?page=2";
+    this.data.requestUri = "";
     this.data.requestType = RequestType.GET;
     this.data.protocol = Protocol.REST;
     this.data.soapOperation = new SoapOperation();
@@ -54,7 +55,17 @@ export class TabComponent implements OnInit {
       $('#overlay').fadeOut();
     });
   }
-
+  enableGo(event:any) {
+    var uri = $('#requestUri').val();
+    var pattern = /^(http|https):\/\/[^ "]+$/;
+    var valid = pattern.test(uri);
+    if(valid){
+      $('#goButton').removeAttr('disabled');
+    }
+    else{
+      $('#uri-error').removeAttr('hidden');
+    }
+  }
   public getTitle(): string {
     return this.title;
   }

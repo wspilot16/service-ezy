@@ -20,12 +20,14 @@ export class SimpleResponseViewComponent implements OnInit {
 
   ngOnChanges(): void {
 		if (this.response) {
+      this.inputs = [];
       if (this.requestType == Protocol.SOAP) {
         const root: Document = this.parser.parseFromString(this.response,"text/xml");
         this.parseLeafXml(root);
         this.filteredInputs = this.inputs;
       } else if (this.requestType == Protocol.REST){
         this.parseLeafJson(JSON.parse(this.response));
+        this.filteredInputs = this.inputs;
       }
 		}
   }
@@ -48,7 +50,7 @@ export class SimpleResponseViewComponent implements OnInit {
     var that = this;
     Object.keys(root).forEach(function(key) {
       var item = root[key];
-      if (typeof item === "string" || item instanceof String) {
+      if (typeof item === "string" || typeof item === "number" || item instanceof String) {
         that.addInput(key, item.toString(), depth);
       } else {
         that.parseLeafJson(item, depth++, key);

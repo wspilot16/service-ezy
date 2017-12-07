@@ -1,5 +1,9 @@
+<div class="form-group col-md-3" style="float: right;">
+  <input placeholder="Search within response" type="text" class="form-control" [(ngModel)]="filter" (ngModelChange)="onFilterChange()" /><br>
+</div>
+
 <div *ngIf="inputs != null">
-    <div *ngFor="let input of inputs" >
+    <div *ngFor="let input of filteredInputs" >
       <label class="key">{{input.key}}</label>: <input class="value" (blur)="onblur(input)" readOnly [(ngModel)]="input.value"><br>
     </div>  
   </div>

@@ -9,7 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SimpleResponseViewComponent implements OnInit {
   @Input() response: string;
+  filter: string;
   inputs: KeyValue[] = [];
+  filteredInputs: KeyValue[] = [];
   @Input() requestType: Protocol;
   parser: DOMParser = new DOMParser();
   constructor() { }
@@ -21,6 +23,7 @@ export class SimpleResponseViewComponent implements OnInit {
       if (this.requestType == Protocol.SOAP) {
         const root: Document = this.parser.parseFromString(this.response,"text/xml");
         this.parseLeafXml(root);
+        this.filteredInputs = this.inputs;
       } else if (this.requestType == Protocol.REST){
         this.parseLeafJson(JSON.parse(this.response));
       }
@@ -68,5 +71,15 @@ export class SimpleResponseViewComponent implements OnInit {
       }
 		}
 	}
+  
+  public onFilterChange(): void {
+    const that = this;
+    that.filteredInputs = [];
+    this.inputs.forEach(function(input) {
+      if (input.key.toLowerCase().indexOf(that.filter.toLowerCase()) != -1) {
+        that.filteredInputs.push(input);
+      }
+    });
+  }
 
 }

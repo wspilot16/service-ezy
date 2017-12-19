@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class XmlJsonConverterTest {
 
 	@Autowired XmlToJsonConverter converter;
 
-	@Test
+	@Test @Ignore
 	public void testConvertxmlToJson() throws IOException, JSONException {
 		String xml = FileUtils.readFileToString(new File("src/test/data/sample.xml"));
 		String json = converter.convert(xml).replaceAll("\\s", "");

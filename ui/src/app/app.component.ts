@@ -55,5 +55,6 @@ export class AppComponent implements OnInit{
       tab.active = false;
     });
     this.tabs[nextActiveIndex].active = true;
+    this.maxTabs = this.tabs.length >= this.MAX_ALLOWABLE_TABS;
   }
 }

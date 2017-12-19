@@ -3,7 +3,9 @@
 </div>
 
 <div *ngIf="inputs != null">
-    <div *ngFor="let input of filteredInputs" >
+  <div *ngFor="let input of filteredInputs" >
+    <div [style.margin-left]="input.depth*5+'px'">
       <label class="key">{{input.key}}</label>: <input class="value" (blur)="onblur(input)" readOnly [(ngModel)]="input.value"><br>
-    </div>  
-  </div>
+    </div>
+  </div>  
+</div>

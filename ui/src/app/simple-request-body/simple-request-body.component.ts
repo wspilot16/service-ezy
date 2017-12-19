@@ -27,11 +27,12 @@ export class SimpleRequestBodyComponent implements OnInit {
 		}
 	}
 
-	private addInput(key: string, value: string, fullpath: string): void {
+	private addInput(key: string, value: string, fullpath: string, depth): void {
 		const kv: KeyValue = new KeyValue();
 		kv.key = key;
 		kv.value = value;
 		kv.fullPath = fullpath;
+		kv.depth = depth;
 		this.inputs[this.inputs.length] = kv;
 	}
 
@@ -49,7 +50,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 					}
 				});
 				if (!exists) {
-					this.addInput(key, child.nodeValue, fullpath);
+					this.addInput(key, child.nodeValue, fullpath, depth);
 				}
 			} else {
 				this.parseLeaf(child, depth++, child.localName, fullpath==undefined?'':fullpath+'/'+child.localName);

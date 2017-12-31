@@ -21,6 +21,10 @@ export class ClientService {
   }
 
   private handleError(error: any): Promise<any> {
+    if(error.status == 0){
+      alert("404 page not found");
+      $('#overlay').fadeOut();
+    }
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }

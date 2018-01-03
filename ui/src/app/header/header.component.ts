@@ -60,7 +60,10 @@ export class TabComponent implements OnInit {
         }
       }
       $('#overlay').fadeOut();
-      window.setTimeout(function(){ $('#response-label')[0].scrollIntoView(!0);},500);
+      debugger;
+      if($('#response-label').length){
+        window.setTimeout(function(){ $('#response-label')[0].scrollIntoView(!0);},500);
+      }
     });
   }
   }

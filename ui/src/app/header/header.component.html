@@ -9,13 +9,6 @@
 <form #myForm="ngForm">
 <div class="row">
   <div class="col col-md-12 header">
-    <div class="col-md-1 select-dropdown request-header" [hidden]="data.protocol == 'SOAP'">
-        <div class="form-group">
-          <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
-            <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
-          </select>
-        </div>
-    </div>
     <div class="col-md-2 btn-group mobile-view" data-toggle="buttons">
       <label class="btn  {{restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
         <input type="checkbox" checked>REST
@@ -23,6 +16,13 @@
       <label class="btn {{!restProtocolActive?'btn-primary active':'btn-default'}}" (click)="protocolClick()">
         <input type="checkbox">SOAP
       </label>
+    </div>
+    <div class="col-md-1 select-dropdown request-header" [hidden]="data.protocol == 'SOAP'">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
+            <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
+          </select>
+        </div>
     </div>
     <div class="col-md-4 url-textbox">
         <div class="form-group">          

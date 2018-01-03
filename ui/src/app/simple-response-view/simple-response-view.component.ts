@@ -59,8 +59,9 @@ export class SimpleResponseViewComponent implements OnInit {
         that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
       }
 
+      
       //console.log("depth diff: "+(that.inputs[that.inputs.length-1].depth - depth));
-      if (Math.abs(that.inputs[that.inputs.length-1].depth - depth) > 0) {
+      if (that.inputs.length > 0 && Math.abs(that.inputs[that.inputs.length-1].depth - depth) > 0) {
         that.addInput("-------", "-----", 0, "");
       }
     });

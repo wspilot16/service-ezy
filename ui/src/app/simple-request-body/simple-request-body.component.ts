@@ -72,11 +72,19 @@ export class SimpleRequestBodyComponent implements OnInit {
 	}
 
 	public onblur(input: KeyValue): void {
-		if (input.value && input.key) {
+		if (input.value && input.key && input.value!= "?") {
+			$('#error-message').text("");
 			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
 			this.updateRequest(root, input.key, input.value);
 			this.requestBody = new XMLSerializer().serializeToString(root.documentElement);;
 			this.notify.emit(this.requestBody);
+		}
+		else{
+			if(input.value == "?"){
+				$('#error-message').text("Special characters not allowed");
+			}else{
+				$('#error-message').text("input fields cannot be empty or special characters");
+			}
 		}
 	}
 

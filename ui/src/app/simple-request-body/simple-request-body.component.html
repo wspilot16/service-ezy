@@ -6,7 +6,7 @@
   <div class="col-md-3">
     <div class="form-group span6" *ngFor="let input of filteredInputs" >
       <label>{{input.key}}</label>
-      <input class="form-control" required (blur)="onblur(input)" title="{{input.fullPath}}" [(ngModel)]="input.value">
+      <input id="requestInput" class="form-control" required (blur)="onblur(input)" title="{{input.fullPath}}" [(ngModel)]="input.value">
       <br><br>
     </div> 
     <span id="error-message" style="color:red;"></span>

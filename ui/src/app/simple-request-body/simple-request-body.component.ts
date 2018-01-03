@@ -83,7 +83,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 			if(input.value == "?"){
 				$('#error-message').text("Special characters not allowed");
 			}else{
-				$('#error-message').text("input fields cannot be empty or special characters");
+				$('#error-message').text("Please enter valid input");
 			}
 		}
 	}

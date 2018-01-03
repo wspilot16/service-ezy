@@ -40,6 +40,14 @@ export class TabComponent implements OnInit {
     var uri = $('#requestUri').val();
     var pattern = /^(http|https):\/\/[^ "]+$/;
     var valid = pattern.test(uri);
+    if($('#requestInput').length){
+      var val = $('#requestInput').val();
+      if(val == "?" || val == ""){
+        $('#error-message').text("Please enter valid input");
+      }else{
+        $('#error-message').text("");
+      }
+    }
     if(!valid){
       $('#uri-error').css('display',"block");
     }
@@ -48,7 +56,7 @@ export class TabComponent implements OnInit {
     $('#overlay').fadeIn();
     this.data.soapOperation.requestTemplate = this.requestBody;
     this.data.requestBody = this.requestBody;
-    this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData; 
+    this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
       if (this.data.protocol == Protocol.SOAP) {
         if (this.data.soapOperations && this.data.soapOperations.length > 0) {
           this.data.soapOperation = this.data.soapOperations[0];

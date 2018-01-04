@@ -56,7 +56,7 @@ export class SimpleResponseViewComponent implements OnInit {
       var item = root[key];
       if (typeof item === "string" || typeof item === "number" || item instanceof String) {
         that.addInput(key, item.toString(), depth, fullpath);
-      } else if (item instanceof Array) {
+      } else if (item instanceof Array || item instanceof Object) {
         that.addInput(key, "Array", depth, fullpath);
         that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
       } else {

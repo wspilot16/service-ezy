@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./simple-response-view.component.css']
 })
 export class SimpleResponseViewComponent implements OnInit {
+  readonly MAX_PARSE_DEPTH: number = 4;
   @Input() response: string;
   filter: string;
   inputs: KeyValue[] = [];
@@ -36,7 +37,7 @@ export class SimpleResponseViewComponent implements OnInit {
     if (value && value != null && value.trim().length > 0) {
       const kv: KeyValue = new KeyValue();
       kv.key = key;
-      kv.value = value;
+      kv.value = value=="Array"?"":value;
       kv.depth = depth;
       kv.fullPath = fullpath;
       //console.log("depth: "+depth);
@@ -45,7 +46,7 @@ export class SimpleResponseViewComponent implements OnInit {
   }
   
   parseLeafJson(root: object, depth?: number, key?, fullpath?): void {
-		if (!root || depth > 4) {
+		if (!root || depth > this.MAX_PARSE_DEPTH) {
 			return;
     }
     depth = depth?depth:0;
@@ -55,6 +56,9 @@ export class SimpleResponseViewComponent implements OnInit {
       var item = root[key];
       if (typeof item === "string" || typeof item === "number" || item instanceof String) {
         that.addInput(key, item.toString(), depth, fullpath);
+      } else if (item instanceof Array) {
+        that.addInput(key, "Array", depth, fullpath);
+        that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
       } else {
         that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
       }

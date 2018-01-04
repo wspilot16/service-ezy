@@ -17,14 +17,20 @@
         <input type="checkbox">SOAP
       </label>
     </div>
-    <div class="col-md-1 select-dropdown request-header" [hidden]="data.protocol == 'SOAP'">
+    <div class="col-md-1 select-dropdown request-header">
         <div class="form-group">
-          <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
-            <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
-          </select>
+          <div *ngIf="requestTypes.length > 1"> 
+            <select class="form-control" [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
+              <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
+            </select>
+          </div>
+          <div *ngIf="requestTypes.length == 1" id="disableSoapDropdown">
+            <select class="form-control" disabled [(ngModel)]="data.requestType" name="requestType" (click)="requestTypeClicked(data.requestType)">
+                <option *ngFor="let requestType of requestTypes" [selected]="requestType.value==0">{{requestType}}</option>
+            </select>
+          </div>
         </div>
     </div>
-    
     <div class="col-md-4 url-textbox">
         <div class="form-group">          
             <input class="form-control" type="text" id="requestUri" required [(ngModel)]="data.requestUri" placeholder="Enter URL" list="searchList" name="requestUri" (blur)="onRequestUriChange()">

@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SimpleResponseViewComponent implements OnInit {
   readonly MAX_PARSE_DEPTH: number = 4;
+  readonly SKIP_VALUE: string = "SKIP_VALUE";
   @Input() response: string;
   filter: string;
   inputs: KeyValue[] = [];
@@ -37,7 +38,7 @@ export class SimpleResponseViewComponent implements OnInit {
     if (value && value != null && value.trim().length > 0) {
       const kv: KeyValue = new KeyValue();
       kv.key = key;
-      kv.value = value=="Array"?"":value;
+      kv.value = value==this.SKIP_VALUE?"":value;
       kv.depth = depth;
       kv.fullPath = fullpath;
       //console.log("depth: "+depth);
@@ -56,8 +57,11 @@ export class SimpleResponseViewComponent implements OnInit {
       var item = root[key];
       if (typeof item === "string" || typeof item === "number" || item instanceof String) {
         that.addInput(key, item.toString(), depth, fullpath);
-      } else if (item instanceof Array || item instanceof Object) {
-        that.addInput(key, "Array", depth, fullpath);
+      } else if (item instanceof Array) {
+        that.addInput(key, that.SKIP_VALUE, depth, fullpath);
+        that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
+      } else if (!(root instanceof Array) && item instanceof Object) {
+        that.addInput(key, that.SKIP_VALUE, depth, fullpath);
         that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
       } else {
         that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);

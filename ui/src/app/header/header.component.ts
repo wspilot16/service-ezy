@@ -22,16 +22,17 @@ export class TabComponent implements OnInit {
   restProtocolActive: boolean = true;
   simpleView: boolean = true;
   requestTypes: RequestType[];
-  selectedOperationName: string = Protocol.REST.toString();
+  protocolName: string = Protocol.REST.toString();
+  operationName: string;
   soapOperations: SoapOperation[] = [];
   requestBody: string;
 
   ngOnInit() {
     this.data = new ServiceData();
-    //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
-    this.data.requestUri = "https://reqres.in/api/users?page=2";
+    this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
+    //this.data.requestUri = "https://reqres.in/api/users?page=2";
     this.data.requestType = RequestType.GET;
-    this.data.protocol = Protocol.REST;
+    this.data.protocol = Protocol.SOAP;
     this.data.soapOperation = new SoapOperation();
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }
@@ -50,29 +51,28 @@ export class TabComponent implements OnInit {
     }
     if(!valid){
       $('#uri-error').css('display',"block");
+    } else {
+      $('#uri-error').css('display',"none");
+      $('#overlay').fadeIn();
+      this.data.soapOperation.requestTemplate = this.requestBody;
+      this.data.requestBody = this.requestBody;
+      this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
+        if (this.data.protocol == Protocol.SOAP) {
+          if (this.data.soapOperations && this.data.soapOperations.length > 0) {
+            this.data.soapOperation = this.data.soapOperations[0];
+            this.soapOperations = this.data.soapOperations;
+            this.data.soapOperations = null;
+          }
+          if (this.data.soapOperation && !this.requestBody) {
+            this.requestBody = this.data.soapOperation.requestTemplate;
+          }
+        }
+        $('#overlay').fadeOut();
+        if($('#response-label').length){
+          window.setTimeout(function(){ $('#response-label')[0].scrollIntoView(!0);},500);
+        }
+      });
     }
-  else{
-    $('#uri-error').css('display',"none");
-    $('#overlay').fadeIn();
-    this.data.soapOperation.requestTemplate = this.requestBody;
-    this.data.requestBody = this.requestBody;
-    this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
-      if (this.data.protocol == Protocol.SOAP) {
-        if (this.data.soapOperations && this.data.soapOperations.length > 0) {
-          this.data.soapOperation = this.data.soapOperations[0];
-          this.soapOperations = this.data.soapOperations;
-          this.data.soapOperations = null;
-        }
-        if (this.data.soapOperation && !this.requestBody) {
-          this.requestBody = this.data.soapOperation.requestTemplate;
-        }
-      }
-      $('#overlay').fadeOut();
-      if($('#response-label').length){
-        window.setTimeout(function(){ $('#response-label')[0].scrollIntoView(!0);},500);
-      }
-    });
-  }
   }
   enableGo(event:any) {
     var uri = $('#requestUri').val();
@@ -112,10 +112,14 @@ export class TabComponent implements OnInit {
       this.data.requestType = RequestType.POST;
       this.requestTypes = [RequestType.POST];
     }
-    this.selectedOperationName = this.data.protocol.toString();
+    this.data.response = "";
+    this.data.rawResponse = "";
+    this.data.requestUri = "";
+    this.protocolName = this.data.protocol.toString();
   }
 
   public operationClick(operationName: string): void {
+    this.operationName = operationName;
     this.soapOperations.forEach(soapOperation => {
       if (soapOperation.name == operationName) {
         this.requestBody = soapOperation.requestTemplate;

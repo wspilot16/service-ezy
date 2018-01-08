@@ -7,6 +7,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class RequestBodyComponent implements OnInit {
   @Input() requestBody: string;
+  @Input() operationName: string;
   simpleView: boolean = true;
   @Input() visible: boolean;
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();

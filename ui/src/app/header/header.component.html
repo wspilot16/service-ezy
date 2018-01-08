@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-2 select-dropdown" [hidden]="data.protocol != 'SOAP' || soapOperations.length <= 0">
       <div class="form-group">
-        <select class="form-control" [(ngModel)]="selectedOperationName" name="operation" (change)="operationClick($event.target.value)">
+        <select class="form-control" [(ngModel)]="protocolName" name="operation" (change)="operationClick($event.target.value)">
           <option *ngFor="let soapOperation of soapOperations" >{{soapOperation.name}}</option>
         </select>
       </div>
@@ -51,10 +51,10 @@
   </div>
 
   <div class="row request-body">
-    <request-body [(requestBody)]="requestBody" [(requestType)]="data.protocol" [visible]="(data.protocol == 'REST' && data.requestType == 'POST' || data.requestType=='PUT') || (data.protocol == 'SOAP' &&  data.soapOperation.requestTemplate)" (notify)="onNotify($event)"></request-body>
+    <request-body [(operationName)]="operationName" [(requestBody)]="requestBody" [(requestType)]="data.protocol" [visible]="(data.protocol == 'REST' && data.requestType == 'POST' || data.requestType=='PUT') || (data.protocol == 'SOAP' &&  data.soapOperation.requestTemplate)" (notify)="onNotify($event)"></request-body>
   </div>
 
-  <div class="row response-body">
+  <div *ngIf="data.response" class="row response-body">
     <div class="col-md-12">
         <response-body [requestType]="data.protocol" [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
     </div>

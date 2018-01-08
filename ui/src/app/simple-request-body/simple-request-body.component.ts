@@ -10,6 +10,8 @@ declare var $;
 })
 export class SimpleRequestBodyComponent implements OnInit {
 	@Input() requestBody: string;
+	@Input() operationName: string;
+	prevOperationName: string;
 	filter: string;
 	inputs: KeyValue[] = [];
 	filteredInputs: KeyValue[] = [];
@@ -21,10 +23,20 @@ export class SimpleRequestBodyComponent implements OnInit {
 
 	ngOnChanges(): void {
 		if (this.requestBody) {
+			if (this.operationName != this.prevOperationName) {
+				this.inputs = [];
+				this.filteredInputs = [];
+				this.filter = "";
+			}
+			//console.log(this.requestBody);
 			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
 			this.parseLeaf(root);
 			this.filteredInputs = this.inputs;
 		}
+	}
+
+	onModelChange(): void {
+		console.log("on change");
 	}
 
 	private addInput(key: string, value: string, fullpath: string, depth): void {
@@ -86,6 +98,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 				$('#error-message').text("Please enter valid input");
 			}
 		}
+		this.prevOperationName = this.operationName;
 	}
 
   public onFilterChange(): void {

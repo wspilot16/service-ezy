@@ -29,10 +29,10 @@ export class TabComponent implements OnInit {
 
   ngOnInit() {
     this.data = new ServiceData();
-    this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
-    //this.data.requestUri = "https://reqres.in/api/users?page=2";
+    //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
+    this.data.requestUri = "https://reqres.in/api/users?page=2";
     this.data.requestType = RequestType.GET;
-    this.data.protocol = Protocol.SOAP;
+    this.data.protocol = Protocol.REST;
     this.data.soapOperation = new SoapOperation();
     this.requestTypes = [RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE, RequestType.HEAD];
   }

@@ -1,3 +1,4 @@
+import { KeyValue } from './../KeyValue';
 import { SoapOperation } from './../soap-operation';
 import { Protocol } from './../protocol.enum';
 import { RequestType } from './../request-type.enum';
@@ -26,9 +27,11 @@ export class TabComponent implements OnInit {
   operationName: string;
   soapOperations: SoapOperation[] = [];
   requestBody: string;
+  showHeaderRows: boolean = false;
 
   ngOnInit() {
     this.data = new ServiceData();
+    this.data.headers = [new KeyValue()];
     //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
     this.data.requestUri = "https://reqres.in/api/users?page=2";
     this.data.requestType = RequestType.GET;
@@ -56,6 +59,9 @@ export class TabComponent implements OnInit {
       $('#overlay').fadeIn();
       this.data.soapOperation.requestTemplate = this.requestBody;
       this.data.requestBody = this.requestBody;
+      const validHeaders: KeyValue[] = [];
+      this.data.headers.forEach(kv => {if (kv.isEmpty()) { validHeaders.push(kv) } });
+      this.data.headers = validHeaders;
       this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
         if (this.data.protocol == Protocol.SOAP) {
           if (this.data.soapOperations && this.data.soapOperations.length > 0) {

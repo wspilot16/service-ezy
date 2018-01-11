@@ -60,6 +60,10 @@
     </div>
   </div>
 
+  <div class="row" *ngIf="showHeaderRows">
+    <app-header-row [(headers)]="data.headers"></app-header-row>
+  </div>
+
   <div class="row request-body">
     <request-body [(operationName)]="operationName" [(requestBody)]="requestBody" [(requestType)]="data.protocol" [visible]="(data.protocol == 'REST' && data.requestType == 'POST' || data.requestType=='PUT') || (data.protocol == 'SOAP' &&  data.soapOperation.requestTemplate)" (notify)="onNotify($event)"></request-body>
   </div>

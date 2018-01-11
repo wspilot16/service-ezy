@@ -1,3 +1,4 @@
+import { KeyValue } from './KeyValue';
 import { SoapOperation } from './soap-operation';
 import { Protocol } from './protocol.enum';
 import { RequestType } from './request-type.enum';
@@ -11,6 +12,7 @@ export class ServiceData {
 	requestUri: string;
 	requestType: RequestType;
 	requestBody: string;
+	headers: KeyValue[];
 	protocol: Protocol;
 	soapOperation: SoapOperation;
 	soapOperations: SoapOperation[];

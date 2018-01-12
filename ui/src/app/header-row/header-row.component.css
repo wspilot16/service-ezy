@@ -37,7 +37,10 @@ form {
 .headers-loop{
 	display: inline-block;
 }
-#header-label, .header-root{
-	margin-left: 3.5%; 
+#header-label{
+	margin-left: 3.5%;
 	margin-top: 10px;
+}
+.header-root{
+	margin-left: 3.5%;
 }

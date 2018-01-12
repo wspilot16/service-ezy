@@ -28,6 +28,7 @@ export class TabComponent implements OnInit {
   soapOperations: SoapOperation[] = [];
   requestBody: string;
   showHeaderRows: boolean = false;
+  headers: KeyValue[] = [new KeyValue()];
 
   ngOnInit() {
     this.data = new ServiceData();
@@ -41,6 +42,7 @@ export class TabComponent implements OnInit {
   }
 
   public goClicked(): void {
+    this.showHeaderRows = false;
     var uri = $('#requestUri').val();
     var pattern = /^(http|https):\/\/[^ "]+$/;
     var valid = pattern.test(uri);
@@ -58,10 +60,8 @@ export class TabComponent implements OnInit {
       $('#uri-error').css('display',"none");
       $('#overlay').fadeIn();
       this.data.soapOperation.requestTemplate = this.requestBody;
-      this.data.requestBody = this.requestBody;
-      const validHeaders: KeyValue[] = [];
-      this.data.headers.forEach(kv => {if (kv.isEmpty()) { validHeaders.push(kv) } });
-      this.data.headers = validHeaders;
+      this.data.requestBody = this.requestBody;      
+      this.headers.forEach(kv => {if (kv.isEmpty()) { this.data.headers.push(kv) } });
       this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
         if (this.data.protocol == Protocol.SOAP) {
           if (this.data.soapOperations && this.data.soapOperations.length > 0) {

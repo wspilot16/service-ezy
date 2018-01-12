@@ -54,14 +54,14 @@
           <img style="width: 18px;" src="/assets/images/ic_settings_black_24px.svg" />
         </button>
         <ul class="dropdown-menu">
-          <li><a href="#">Headers</a></li>
+          <li><a href="#" (click)="showHeaderRows=!showHeaderRows">Headers</a></li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="row" *ngIf="showHeaderRows">
-    <app-header-row [(headers)]="data.headers"></app-header-row>
+    <app-header-row [(headers)]="headers"></app-header-row>
   </div>
 
   <div class="row request-body">

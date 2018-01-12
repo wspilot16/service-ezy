@@ -15,7 +15,7 @@ export class HeaderRowComponent {
       this.headers.push(new KeyValue());
   }
 
-  private shouldAddRow(): boolean {debugger;
+  private shouldAddRow(): boolean {
     const lastRow: KeyValue = this.headers[this.headers.length - 1];
     return lastRow.isEmpty();
   }

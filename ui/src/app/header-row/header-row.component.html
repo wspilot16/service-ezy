@@ -1,4 +1,4 @@
-<div class="navbar" *ngFor="let header of headers">
+<div *ngFor="let header of headers">
   <div class="btn-group col-md-1 col-sm-1 col-xs-1" data-toggle="buttons">			
     <label class="btn btn-success {{header != undefined && header.isEmpty()?'active':''}}">
       <input type="checkbox" autocomplete="off" checked>

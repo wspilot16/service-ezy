@@ -12,6 +12,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 	@Input() requestBody: string;
 	@Input() operationName: string;
 	prevOperationName: string;
+	initialRequestElems: string[] = [];
 	filter: string;
 	inputs: KeyValue[] = [];
 	filteredInputs: KeyValue[] = [];
@@ -27,6 +28,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 				this.inputs = [];
 				this.filteredInputs = [];
 				this.filter = "";
+				this.initialRequestElems = [];
 			}
 			//console.log(this.requestBody);
 			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
@@ -54,15 +56,17 @@ export class SimpleRequestBodyComponent implements OnInit {
 		}
 		for (var i=0; i<root.childNodes.length; i++) {
 			const child = root.childNodes.item(i);
+			
 			if (child.nodeValue == "?") {
-				var exists: boolean = false;
-				this.inputs.forEach(function(item) {
-					if (item.key == key) {
-						exists = true;
-					}
-				});
-				if (!exists) {
+				this.initialRequestElems.push(child.parentNode.nodeName);
+				if (!this.inputs.find(item => item.key === key)) {
 					this.addInput(key, child.nodeValue, fullpath, depth);
+				}
+			} else if(this.initialRequestElems.length !=0 && this.initialRequestElems.find(elem => elem === child.parentNode.nodeName)) {
+				const found = this.inputs.find(item => item.key === key);
+				if (found) {
+					found.value = child.nodeValue;
+					console.log("updated");
 				}
 			} else {
 				this.parseLeaf(child, depth++, child.localName, fullpath==undefined?'':fullpath+'/'+child.localName);

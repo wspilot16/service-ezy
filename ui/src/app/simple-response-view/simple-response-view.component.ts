@@ -68,7 +68,7 @@ export class SimpleResponseViewComponent implements OnInit {
       }
 
       if (depth !=0 && that.inputs.length > 0 && Math.abs(that.inputs[that.inputs.length-1].depth - depth) > 0) {
-        that.addInput("-------", "-----", depth+1, "");
+        that.addInput("---------------------", that.SKIP_VALUE, depth+1, "");
       }
     });
 	}

@@ -7,3 +7,7 @@
 */.gitignore
 **/server.log
 **/.classpath
+**/*groovy.log
+**/*errors.log
+**/soapui.log
+**/output

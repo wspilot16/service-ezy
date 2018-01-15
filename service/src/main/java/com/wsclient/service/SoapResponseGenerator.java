@@ -56,7 +56,7 @@ public class SoapResponseGenerator {
 		}
 		// print the response
 		String content = response.getContentAsString();
-		serviceData.setResponseTime(response.getTimeTaken()+" ms");
+		serviceData.setResponseTime((int)response.getTimeTaken());
 		logger.debug(":::Response:::\n"+content);
 		return content;
 	}

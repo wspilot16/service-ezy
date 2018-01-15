@@ -42,11 +42,9 @@ public class RestClientService {
 				try {
 					serviceData.setSoapOperations(generator.getWebMethods(serviceData));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println(serviceData.getSoapOperation());
 				WsdlRequest wsdlRequest;
 				try {
 					wsdlRequest = generator.getSoapRquestXML(serviceData);
@@ -60,14 +58,14 @@ public class RestClientService {
 			}
 		} else if ("REST".equalsIgnoreCase(serviceData.getProtocol())) {
 			HttpMethod httpMethod = HttpMethod.valueOf(HttpMethod.class, serviceData.getRequestType());
-			HttpHeaders headers = new HttpHeaders();
+			final HttpHeaders headers = new HttpHeaders();
 			ResponseEntity<String> responseEntity = null;
 			headers.setContentType(MediaType.APPLICATION_JSON);
+			serviceData.getHeaders().forEach(header -> headers.add(header.getKey(), header.getValue()));
 			HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
-			CustomFactory customFactory = new CustomFactory();
 			responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(),
 					httpMethod, httpEntity, String.class);
-			
+			//serviceData.setResponseTime(responseEntity.getHeaders().get("response-time"));
 			serviceData.setResponse(responseEntity.getBody());
 			serviceData.setRawResponse(responseEntity.getBody());
 			serviceData.setResponseType("json");

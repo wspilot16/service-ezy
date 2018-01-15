@@ -66,7 +66,6 @@ export class SimpleRequestBodyComponent implements OnInit {
 				const found = this.inputs.find(item => item.key === key);
 				if (found) {
 					found.value = child.nodeValue;
-					console.log("updated");
 				}
 			} else {
 				this.parseLeaf(child, depth++, child.localName, fullpath==undefined?'':fullpath+'/'+child.localName);

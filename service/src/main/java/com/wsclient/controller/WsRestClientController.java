@@ -1,5 +1,6 @@
 package com.wsclient.controller;
 
+import com.wsclient.model.KeyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,16 @@ public class WsRestClientController {
 
 	@RequestMapping(value = "/post", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json" })
 	public ServiceData processPostRequest(@RequestBody ServiceData serviceData) {
+		long start = System.currentTimeMillis();
 		try {
 			serviceData = restClientService.post(serviceData);
 		} catch (Exception e) {
-			e.printStackTrace();
+			serviceData.getErrors().add(new KeyValue("system_error", e.getMessage()));
+		}
+		long end = System.currentTimeMillis();
+		long duration = end-start;
+		if (serviceData.getResponseTime() != null) {
+			serviceData.setResponseTime((int) duration);
 		}
 		return serviceData;
 	}

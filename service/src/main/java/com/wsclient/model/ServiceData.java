@@ -15,7 +15,7 @@ public class ServiceData {
 	private List<WebRequestElement> webRequestElementList;
 	private Map<String, List<WebRequestElement>> webMethodMap;
 	//private Map<String, String> responseMap;
-	private String responseTime;
+	private Integer responseTime;
 	private String errorDescription;
 	private Integer errorCode;
 	private String response;
@@ -29,6 +29,7 @@ public class ServiceData {
 	private String protocol;
 	private List<SoapOperation> soapOperations;
 	private SoapOperation soapOperation;
+	private List<KeyValue> errors;
 
 	public String getErrorDescription() {
 		return errorDescription;
@@ -80,7 +81,6 @@ public class ServiceData {
 	public String getSelectedMethod() {
 		return selectedMethod;
 	}
-
 	public void setSelectedMethod(String selectedMethod) {
 		this.selectedMethod = selectedMethod;
 	}
@@ -88,16 +88,11 @@ public class ServiceData {
 	public String getContext() {
 		return context;
 	}
-
-	public void setContext(String context) {
-
-		this.context = context;
-	}
+	public void setContext(String context) { this.context = context;	}
 
 	public String getWsdlUrl() {
 		return wsdlUrl;
 	}
-
 	public void setWsdlUrl(String wsdlUrl) {
 		this.wsdlUrl = wsdlUrl;
 	}
@@ -105,23 +100,13 @@ public class ServiceData {
 	public String getBindingName() {
 		return bindingName;
 	}
-
 	public void setBindingName(String bindingName) {
 		this.bindingName = bindingName;
 	}
 
-	/*public Map<String, String> getResponseMap() {
-		return responseMap;
-	}
-
-	public void setResponseMap(Map<String, String> responseMap) {
-		this.responseMap = responseMap;
-	}*/
-
 	public String getSoapHeader() {
 		return soapHeader;
 	}
-
 	public void setSoapHeader(String soapHeader) {
 		this.soapHeader = soapHeader;
 	}
@@ -129,23 +114,18 @@ public class ServiceData {
 	public Map<String, String> getHttpRequestHeader() {
 		return httpRequestHeader;
 	}
-
 	public void setHttpRequestHeader(Map<String, String> httpRequestHeader) {
 		this.httpRequestHeader = httpRequestHeader;
 	}
 
-	public String getResponseTime() {
+	public Integer getResponseTime() {
 		return responseTime;
 	}
-
-	public void setResponseTime(String responseTime) {
-		this.responseTime = responseTime;
-	}
+	public void setResponseTime(Integer responseTime) {	this.responseTime = responseTime; }
 
 	public String getResponse() {
 		return response;
 	}
-
 	public void setResponse(String response) {
 		this.response = response;
 	}
@@ -160,7 +140,6 @@ public class ServiceData {
 	public String getRequestType() {
 		return requestType;
 	}
-
 	public void setRequestType(String requestType) {
 		this.requestType = requestType;
 	}
@@ -168,7 +147,6 @@ public class ServiceData {
 	public String getRequestBody() {
 		return requestBody;
 	}
-
 	public void setRequestBody(String requestBody) {
 		this.requestBody = requestBody;
 	}
@@ -176,7 +154,6 @@ public class ServiceData {
 	public String getResponseType() {
 		return responseType;
 	}
-
 	public void setResponseType(String responseType) {
 		this.responseType = responseType;
 	}
@@ -204,15 +181,12 @@ public class ServiceData {
 	public String getProtocol() {
 		return protocol;
 	}
-
 	public void setProtocol(String protocol) {
 		this.protocol = protocol;
 	}
 
 	public List<SoapOperation> getSoapOperations() {
-		if (soapOperations == null) {
-			soapOperations = new ArrayList<>();
-		}
+		soapOperations = soapOperations == null?new ArrayList<>():soapOperations;
 		return soapOperations;
 	}
 
@@ -223,8 +197,10 @@ public class ServiceData {
 	public SoapOperation getSoapOperation() {
 		return soapOperation;
 	}
-
 	public void setSoapOperation(SoapOperation soapOperation) {
 		this.soapOperation = soapOperation;
 	}
+
+	public List<KeyValue> getErrors() { errors = errors==null?new ArrayList<>():errors; return this.errors;}
+	public void setErrors(List<KeyValue> errors) { this.errors = errors; }
 }

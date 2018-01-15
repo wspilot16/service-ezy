@@ -6,3 +6,4 @@
 */.settings/*
 */.gitignore
 **/server.log
+**/.classpath

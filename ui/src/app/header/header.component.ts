@@ -32,7 +32,6 @@ export class TabComponent implements OnInit {
 
   ngOnInit() {
     this.data = new ServiceData();
-    this.data.headers = [new KeyValue()];
     //this.data.requestUri = "http://www.dneonline.com/calculator.asmx?WSDL";
     this.data.requestUri = "https://reqres.in/api/users?page=2";
     this.data.requestType = RequestType.GET;
@@ -60,7 +59,8 @@ export class TabComponent implements OnInit {
       $('#uri-error').css('display',"none");
       $('#overlay').fadeIn();
       this.data.soapOperation.requestTemplate = this.requestBody;
-      this.data.requestBody = this.requestBody;      
+      this.data.requestBody = this.requestBody;
+      this.data.headers = [];
       this.headers.forEach(kv => {if (kv.isEmpty()) { this.data.headers.push(kv) } });
       this.clientService.getResponse(this.data).then(responseData=>{this.data = responseData;
         if (this.data.protocol == Protocol.SOAP) {

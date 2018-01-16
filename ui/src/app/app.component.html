@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">{{title}}</a>
+    </div>
+    <div class="main-header">
+    <a href="https://global.deloitteresources.com" id="header-logo" class="text-hide hidden-xs" target="_blank">
+        <img alt="Deloitte." src="../assets/img-deloitte-logo.png">
+    </a>
+    <div style="height: 100%; display: flex; align-items: center;">
+    <h2 style="font-family: sans-serif;"><b>{{title}}</b></h2><img style="height: 50%;" alt="Demoezy" src="../assets/demoezy.png">
+    </div>
+  </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1 col-lg-1">
+      
+    </div>
+    <div class="col-sm-9 col-lg-10">
+      <ul class="nav nav-tabs">
+        <li *ngFor="let tab of tabs" (click)="tabClick(tab)" class="{{tab.active?'active':''}}" >
+          <a data-toggle="tab" href="#{{tab.id}}">
+            <button *ngIf="tabs.length > 1" class="close" type="button" (click)="tabClose(tab)">×</button>
+            {{tab.title}}
+          </a>
+        </li>
+        <li *ngIf="!maxTabs">
+          <a (click)="addOnclick()">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+          </a>
+        </li>
+      </ul>
+      
+      <div *ngFor="let tab of tabs" [hidden]="!tab.active">
+        <tab></tab>
+      </div>
+    </div>
+  </div>
+</div>

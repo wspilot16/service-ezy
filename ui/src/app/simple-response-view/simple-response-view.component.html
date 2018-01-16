@@ -1,0 +1,14 @@
+<div class="form-group col-md-3" style="float: right;">
+  <input placeholder="Key based search" type="text" class="form-control" [(ngModel)]="filter" (ngModelChange)="onFilterChange()" /><br>
+</div>
+
+<div *ngIf="inputs != null">
+  <div *ngFor="let input of filteredInputs" >
+    <div [style.margin-left]="input.depth*10+'px'">
+      <label class="key">{{input.key}}</label>
+      <span *ngIf="input.value.length > 0">:</span>
+      <input class="value" (blur)="onblur(input)" readOnly [(ngModel)]="input.value">
+      <br>
+    </div>
+  </div>  
+</div>

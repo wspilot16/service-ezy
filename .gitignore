@@ -1,0 +1,13 @@
+/target/
+*/package-lock.json
+*/node_modules/*
+*/*.iml
+*/.idea/*
+*/.settings/*
+*/.gitignore
+**/server.log
+**/.classpath
+**/*groovy.log
+**/*errors.log
+**/soapui.log
+**/output

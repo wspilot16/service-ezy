@@ -13,6 +13,7 @@ import { JjviewerComponent } from './jjviewer/jjviewer.component';
 import { SimpleRequestBodyComponent } from './simple-request-body/simple-request-body.component';
 import { SimpleResponseViewComponent } from './simple-response-view/simple-response-view.component';
 import { HeaderRowComponent } from './header-row/header-row.component';
+import { ResponseHeaderComponent } from './response-header/response-header.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderRowComponent } from './header-row/header-row.component';
     JjviewerComponent,
     SimpleRequestBodyComponent,
     SimpleResponseViewComponent,
-    HeaderRowComponent
+    HeaderRowComponent,
+    ResponseHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.wsclient.model.KeyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,8 @@ public class RestClientService {
 			//serviceData.setResponseTime(responseEntity.getHeaders().get("response-time"));
 			serviceData.setResponse(responseEntity.getBody());
 			serviceData.setRawResponse(responseEntity.getBody());
+			responseEntity.getHeaders().forEach((key, values) -> serviceData.getResponseHeaders()
+					.add(new KeyValue(key, values!=null&&!values.isEmpty()?values.get(0):null)));
 			serviceData.setResponseType("json");
 		}
 		

@@ -1,11 +1,14 @@
 <div *ngIf="visible">
     <label id="response-label" style="margin-left: 1.5%; margin-top: 30px;">Response</label><br>
-    <div class="col-md-3 btn-group" data-toggle="buttons">
+    <!-- <div class="col-md-3 btn-group" data-toggle="buttons">
         <label class="btn {{simpleView?'btn-primary active':'btn-default'}}" (click)="toggleResponseView()">
             <input type="checkbox" checked>Simple
         </label>
         <label class="btn {{!simpleView?'btn-primary active':'btn-default'}}" (click)="toggleResponseView()">
             <input type="checkbox">Raw
+        </label>
+        <label class="btn {{!simpleView?'btn-primary active':'btn-default'}}" (click)="toggleResponseView()">
+            <input type="checkbox">Headers
         </label>
     </div>
     <div class="col-md-12" [hidden]="!simpleView">
@@ -19,6 +22,44 @@
         <div class="form-box no-margin-top">
             <div class="form-bottom">
                 <app-jjviewer [json]="rawResponse" [visible]="rawResponse != null"></app-jjviewer>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" [hidden]="simpleView" style="margin-bottom: 20px;">
+        <div class="form-box no-margin-top">
+            <div class="form-bottom">
+                <app-response-header ></app-response-header>
+            </div>
+        </div>
+    </div> -->
+
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home" (click)="toggleResponseView(0)">Simple</a></li>
+        <li><a data-toggle="tab" href="#menu1" (click)="toggleResponseView(1)">Raw</a></li>
+        <li><a data-toggle="tab" href="#menu2" (click)="toggleResponseView(2)">Headers</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="col-md-12" [hidden]="activeTabIndex!=0">
+            <div class="form-box no-margin-top" style="margin-bottom: 20px;">
+                <div class="form-bottom focus">
+                    <simple-response-view [requestType]="requestType" [response]="response"></simple-response-view>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" [hidden]="activeTabIndex!=1" style="margin-bottom: 20px;">
+            <div class="form-box no-margin-top">
+                <div class="form-bottom">
+                    <app-jjviewer [json]="rawResponse" [visible]="rawResponse != null"></app-jjviewer>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" [hidden]="activeTabIndex!=2">
+            <div class="form-box no-margin-top" style="margin-bottom: 20px;">
+                <div class="form-bottom focus">
+                    <app-response-header [responseHeaders]="responseHeaders"></app-response-header>
+                </div>
             </div>
         </div>
     </div>

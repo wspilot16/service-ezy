@@ -9,5 +9,8 @@ input[readonly]
 }
 .value{
 	color: #4e9a06;
-	margin-left: 1px;
+	margin-left: 3px;
+}
+.display-view{
+	display: flex;
 }

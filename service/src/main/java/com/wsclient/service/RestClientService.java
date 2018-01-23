@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.wsclient.model.KeyValue;
@@ -69,8 +71,10 @@ public class RestClientService {
 			//serviceData.setResponseTime(responseEntity.getHeaders().get("response-time"));
 			serviceData.setResponse(responseEntity.getBody());
 			serviceData.setRawResponse(responseEntity.getBody());
-			responseEntity.getHeaders().forEach((key, values) -> serviceData.getResponseHeaders()
+			List<KeyValue> respHeaders = new ArrayList<>();
+			responseEntity.getHeaders().forEach((key, values) -> respHeaders
 					.add(new KeyValue(key, values!=null&&!values.isEmpty()?values.get(0):null)));
+			serviceData.setResponseHeaders(respHeaders);
 			serviceData.setResponseType("json");
 		}
 		

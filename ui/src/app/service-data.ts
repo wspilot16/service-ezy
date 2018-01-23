@@ -13,6 +13,7 @@ export class ServiceData {
 	requestType: RequestType;
 	requestBody: string;
 	headers: KeyValue[] = [];
+	responseHeaders: KeyValue[] = [];
 	protocol: Protocol;
 	soapOperation: SoapOperation;
 	soapOperations: SoapOperation[];

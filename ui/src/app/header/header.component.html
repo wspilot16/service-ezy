@@ -70,7 +70,7 @@
 
   <div *ngIf="data.response" class="row response-body">
     <div class="col-md-12">
-        <response-body [requestType]="data.protocol" [(response)]="data.response" [(rawResponse)]="data.rawResponse" [visible]="data.response != null"></response-body>
+        <response-body [requestType]="data.protocol" [(response)]="data.response" [(rawResponse)]="data.rawResponse" [(responseHeaders)]="data.responseHeaders" [visible]="data.response != null"></response-body>
     </div>
   </div>
 </div>

@@ -25,7 +25,9 @@ public class ServiceData {
 	private String requestBody;
 	private String responseType;
 	private Map<String, String> requestMap;
+
 	private List<KeyValue> headers;
+	private List<KeyValue> responseHeaders;
 	private String protocol;
 	private List<SoapOperation> soapOperations;
 	private SoapOperation soapOperation;
@@ -176,6 +178,17 @@ public class ServiceData {
 
 	public void setHeaders(List<KeyValue> headers) {
 		this.headers = headers;
+	}
+
+	public List<KeyValue> getResponseHeaders() {
+		if (responseHeaders == null) {
+			responseHeaders = new ArrayList<>();
+		}
+		return responseHeaders;
+	}
+
+	public void setResponseHeaders(List<KeyValue> responseHeaders) {
+		this.responseHeaders = responseHeaders;
 	}
 
 	public String getProtocol() {

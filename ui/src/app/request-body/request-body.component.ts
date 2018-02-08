@@ -16,7 +16,11 @@ export class RequestBodyComponent implements OnInit {
   @Input() requestType: Protocol;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {}
+
+  ngOnChanges(): void {
+    this.simpleView = this.requestType == Protocol.SOAP;
+  }
 
   public onChange(): void {
     this.notify.emit(this.requestBody);

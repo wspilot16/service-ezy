@@ -50,7 +50,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 	}
 
 	onModelChange(): void {
-		console.log("on change");
+		//console.log("on change");
 	}
 
 	private addInput(key: string, value: string, fullpath: string, depth): void {

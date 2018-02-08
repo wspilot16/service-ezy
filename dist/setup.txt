@@ -1,0 +1,5 @@
+$source = "https://github.com/wspilot16/service-ezy/blob/dist/dist/webserviceclient-0.0.1-SNAPSHOT.jar"
+$destination = "./webserviceclient-0.0.1-SNAPSHOT.jar"
+
+Invoke-WebRequest $source -OutFile $destination
+

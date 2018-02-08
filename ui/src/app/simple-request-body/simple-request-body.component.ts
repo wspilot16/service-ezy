@@ -1,4 +1,5 @@
 import { KeyValue } from './../KeyValue';
+import { Protocol } from './../protocol.enum';
 import { Component, OnInit, Input, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
 
 declare var $;
@@ -9,8 +10,12 @@ declare var $;
   styleUrls: ['./simple-request-body.component.css']
 })
 export class SimpleRequestBodyComponent implements OnInit {
+	readonly MAX_PARSE_DEPTH: number = 4;	
+	readonly SKIP_VALUE: string = "SKIP_VALUE";
+	
 	@Input() requestBody: string;
 	@Input() operationName: string;
+	@Input() protocol: Protocol;
 	prevOperationName: string;
 	initialRequestElems: string[] = [];
 	filter: string;
@@ -24,16 +29,23 @@ export class SimpleRequestBodyComponent implements OnInit {
 
 	ngOnChanges(): void {
 		if (this.requestBody) {
-			if (this.operationName != this.prevOperationName) {
-				this.inputs = [];
-				this.filteredInputs = [];
-				this.filter = "";
-				this.initialRequestElems = [];
+			this.inputs = [];			
+			if (Protocol.SOAP == this.protocol) {
+				if (this.operationName != this.prevOperationName) {
+					this.inputs = [];
+					this.filteredInputs = [];
+					this.filter = "";
+					this.initialRequestElems = [];
+				}	
+				const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
+				this.parseLeaf(root);
+				this.filteredInputs = this.inputs;
+			} else if (Protocol.REST == this.protocol) {
+				this.parseLeafJson(JSON.parse(this.requestBody));
+				this.filteredInputs = this.inputs;
 			}
-			//console.log(this.requestBody);
-			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
-			this.parseLeaf(root);
-			this.filteredInputs = this.inputs;
+			
+			
 		}
 	}
 
@@ -74,7 +86,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 	}
 
 	updateRequest(root, searchkey, value, depth?: number): void {
-		if (!root || depth > 4) {
+		if (!root || depth > this.MAX_PARSE_DEPTH) {
 			return;
 		}
 		for (var i=0; i<root.childNodes.length; i++) {
@@ -102,6 +114,33 @@ export class SimpleRequestBodyComponent implements OnInit {
 			}
 		}
 		this.prevOperationName = this.operationName;
+	}
+	
+	parseLeafJson(root: object, depth?: number, key?, fullpath?): void {
+		  if (!root || depth > this.MAX_PARSE_DEPTH) {
+			  return;
+	  }
+	  depth = depth?depth:0;
+	  
+	  var that = this;
+	  Object.keys(root).forEach(function(key) {
+		var item = root[key];
+		if (typeof item === "string" || typeof item === "number" || item instanceof String) {
+		  that.addInput(key, item.toString(), fullpath, depth);
+		} else if (item instanceof Array) {
+		  that.addInput(key, that.SKIP_VALUE, fullpath, depth);
+		  that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
+		} else if (!(root instanceof Array) && item instanceof Object) {
+		  that.addInput(key, that.SKIP_VALUE, fullpath, depth);
+		  that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
+		} else {
+		  that.parseLeafJson(item, depth+1, key, fullpath==undefined?'':fullpath+'/'+key);
+		}
+  
+		if (depth !=0 && that.inputs.length > 0 && Math.abs(that.inputs[that.inputs.length-1].depth - depth) > 0) {
+		  that.addInput("---------------------", that.SKIP_VALUE, "", depth+1);
+		}
+	  });
 	}
 
   public onFilterChange(): void {

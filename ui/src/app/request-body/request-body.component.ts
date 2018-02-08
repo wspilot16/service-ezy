@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Protocol } from './../protocol.enum';
 
 @Component({
   selector: 'request-body',
@@ -12,7 +13,7 @@ export class RequestBodyComponent implements OnInit {
   @Input() visible: boolean;
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
   @Input() htmlToAdd: string;
-  @Input() requestType: string;
+  @Input() requestType: Protocol;
   constructor() { }
 
   ngOnInit() { }

@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class ClientService {
-  url = "http://localhost:8089/rest/post";
+  url = "http://localhost:4300/rest/post";
   constructor(private http: Http) { }
 
   getResponse(data: ServiceData):Promise<ServiceData> {
@@ -18,7 +18,7 @@ export class ClientService {
     return this.http.post(this.url, data).map(response => response.json() as ServiceData)
     .toPromise()
     .catch(this.handleError);
-  }
+  } 
 
   private handleError(error: any): Promise<any> {
     if(error.status == 0){

@@ -44,8 +44,6 @@ export class SimpleRequestBodyComponent implements OnInit {
 				this.parseLeafJson(JSON.parse(this.requestBody));
 				this.filteredInputs = this.inputs;
 			}
-			
-			
 		}
 	}
 
@@ -98,13 +96,45 @@ export class SimpleRequestBodyComponent implements OnInit {
 		}
 	}
 
+	updateJsonRequest(root, searchkey, value, depth?: number): void {
+		if (!root || depth > this.MAX_PARSE_DEPTH) {
+			return;
+		}
+
+		var that = this;
+		var match = false;
+	  Object.keys(root).forEach(function(key) {
+			if (match) {return;}
+			var item = root[key];
+			if (typeof item === "string" || typeof item === "number" || item instanceof String) {
+				if (searchkey == key) {
+					root[key] = value;
+					match = true;
+					console.log(root);
+				}
+			} else if (item instanceof Array) {
+				that.updateJsonRequest(item, searchkey, value, depth++);
+			} else if (!(root instanceof Array) && item instanceof Object) {
+				that.updateJsonRequest(item, searchkey, value, depth++);
+			}
+		});
+	}
+
 	public onblur(input: KeyValue): void {
 		if (input.value && input.key && input.value!= "?") {
 			$('#error-message').text("");
-			const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
-			this.updateRequest(root, input.key, input.value);
-			this.requestBody = new XMLSerializer().serializeToString(root.documentElement);;
-			this.notify.emit(this.requestBody);
+			if (this.protocol == Protocol.REST) {
+				const root = JSON.parse(this.requestBody);
+				this.updateJsonRequest(root, input.key, input.value);
+				console.log(root);
+				this.requestBody = JSON.stringify(root);
+				this.notify.emit(this.requestBody);
+			} else if (this.protocol == Protocol.SOAP) {
+				const root: Document = this.parser.parseFromString(this.requestBody,"text/xml");
+				this.updateRequest(root, input.key, input.value);
+				this.requestBody = new XMLSerializer().serializeToString(root.documentElement);
+				this.notify.emit(this.requestBody);
+			}
 		}
 		else{
 			if(input.value == "?"){

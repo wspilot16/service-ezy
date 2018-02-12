@@ -29,7 +29,6 @@ export class SimpleRequestBodyComponent implements OnInit {
 
 	ngOnChanges(): void {
 		if (this.requestBody) {
-			this.inputs = [];			
 			if (Protocol.SOAP == this.protocol) {
 				if (this.operationName != this.prevOperationName) {
 					this.inputs = [];
@@ -41,6 +40,7 @@ export class SimpleRequestBodyComponent implements OnInit {
 				this.parseLeaf(root);
 				this.filteredInputs = this.inputs;
 			} else if (Protocol.REST == this.protocol) {
+				this.inputs = [];
 				this.parseLeafJson(JSON.parse(this.requestBody));
 				this.filteredInputs = this.inputs;
 			}

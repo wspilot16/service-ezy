@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./simple-response-view.component.css']
 })
 export class SimpleResponseViewComponent implements OnInit {
-  readonly MAX_PARSE_DEPTH: number = 4;
+  readonly MAX_PARSE_DEPTH: number = 10;
   readonly SKIP_VALUE: string = "SKIP_VALUE";
   @Input() response: string;
   filter: string;
@@ -55,7 +55,7 @@ export class SimpleResponseViewComponent implements OnInit {
     var that = this;
     Object.keys(root).forEach(function(key) {
       var item = root[key];
-      if (typeof item === "string" || typeof item === "number" || item instanceof String) {
+      if (typeof item === "string" || typeof item === "number" || typeof item === "boolean" || item instanceof String) {
         that.addInput(key, item.toString(), depth, fullpath);
       } else if (item instanceof Array) {
         that.addInput(key, that.SKIP_VALUE, depth, fullpath);

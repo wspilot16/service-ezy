@@ -4,10 +4,10 @@
 <br><br>
 <div *ngIf="inputs != null">
   <div *ngFor="let input of filteredInputs" >
-    <div class="display-view" [style.margin-left]="input.depth*10+'px'">
+    <div *ngIf="(protocol=='SOAP' && input.value.trim().length>0) || protocol=='REST'" class="display-view" [style.margin-left]="input.depth*10+'px'">
       <label class="key">{{input.key}}</label>
       <div *ngIf="input.value != 'SKIP_VALUE'">:
-      <span class="value">{{input.value}}</span>
+        <span class="value">{{input.value}}</span>
       </div>
       <br>
     </div>

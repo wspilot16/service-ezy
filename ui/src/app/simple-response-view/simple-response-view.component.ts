@@ -14,7 +14,7 @@ export class SimpleResponseViewComponent implements OnInit {
   filter: string;
   inputs: KeyValue[] = [];
   filteredInputs: KeyValue[] = [];
-  @Input() requestType: Protocol;
+  @Input() protocol: Protocol;
   parser: DOMParser = new DOMParser();
   constructor() { }
 
@@ -23,11 +23,11 @@ export class SimpleResponseViewComponent implements OnInit {
   ngOnChanges(): void {
 		if (this.response) {
       this.inputs = [];
-      if (this.requestType == Protocol.SOAP) {
+      if (this.protocol == Protocol.SOAP) {
         const root: Document = this.parser.parseFromString(this.response,"text/xml");
         this.parseLeafXml(root);
         this.filteredInputs = this.inputs;
-      } else if (this.requestType == Protocol.REST){
+      } else if (this.protocol == Protocol.REST){
         this.parseLeafJson(JSON.parse(this.response));
         this.filteredInputs = this.inputs;
       }
@@ -71,16 +71,19 @@ export class SimpleResponseViewComponent implements OnInit {
 	}
   
   parseLeafXml(root: Node, depth?: number, key?, fullpath?: string): void {
-		if (!root || depth > 4) {
+		if (!root || depth > this.MAX_PARSE_DEPTH) {
 			return;
     }
     
 		for (var i=0; i<root.childNodes.length; i++) {
       const child = root.childNodes.item(i);
       if (child.childNodes && child.childNodes.length > 0) {
-        //console.log(child);
         this.parseLeafXml(child, depth++, child.localName);
       } else {
+        console.log(child);
+        console.log(child.childNodes);
+        if (child.childNodes.length == 0)
+          console.log(child.nodeValue);
         this.addInput(key, child.nodeValue, depth, fullpath==undefined?'':fullpath+'/'+key);
       }
 		}

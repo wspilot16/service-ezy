@@ -35,15 +35,12 @@ export class SimpleResponseViewComponent implements OnInit {
   }
   
   private addInput(key: string, value: string, depth: number, fullpath: string): void {
-    if (value && value != null && value.trim().length > 0) {
-      const kv: KeyValue = new KeyValue();
-      kv.key = key;
-      kv.value = value==this.SKIP_VALUE?"":value;
-      kv.depth = depth;
-      kv.fullPath = fullpath;
-      //console.log("depth: "+depth);
-      this.inputs[this.inputs.length] = kv;
-    }
+    const kv: KeyValue = new KeyValue();
+    kv.key = key;
+    kv.value = value;
+    kv.depth = depth;
+    kv.fullPath = fullpath;
+    this.inputs[this.inputs.length] = kv;
   }
   
   parseLeafJson(root: object, depth?: number, key?, fullpath?): void {

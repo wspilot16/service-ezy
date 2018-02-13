@@ -6,9 +6,9 @@
   <div *ngFor="let input of filteredInputs" >
     <div class="display-view" [style.margin-left]="input.depth*10+'px'">
       <label class="key">{{input.key}}</label>
-      <span *ngIf="input.value.length > 0">:</span>
-      <!--<input class="value" (blur)="onblur(input)" readOnly [(ngModel)]="input.value">-->
+      <div *ngIf="input.value != 'SKIP_VALUE'">:
       <span class="value">{{input.value}}</span>
+      </div>
       <br>
     </div>
   </div>  

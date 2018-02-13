@@ -4,18 +4,22 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wsclient.model.KeyValue;
 import com.wsclient.model.ServiceData;
 import com.wsclient.service.RestClientService;
 import com.wsclient.util.CustomFactory;
@@ -38,18 +42,30 @@ public class WebServiceTester {
 			RestClientService restClientService = new RestClientService();
 			CustomFactory customFactory = new CustomFactory();
 			ServiceData serviceData = new ServiceData();
-			serviceData.setRequestBody("{\"name\": \"morpheus\","
-					+"\"job\": \"leader\"}");
-			serviceData.setRequestUri("https://reqres.in/api/users");
-			ServiceData responseData = restClientService.post(serviceData);
-			// https://od-api-demo.oxforddictionaries.com:443/api/v1/domains/en/es
-			// String quote = restTemplate
-			// .getForObject("http://services.groupkt.com/state/get/IND/all",
-			// String.class);
-			/*response = customFactory.getRestTemplate()()
-					.getp("https://www.googleapis.com/customsearch/v1", String.class);
-			*/// log.info(quote);
-			log.info("RESPONSE ENTITY : " + responseData.getResponse());
+			serviceData.setProtocol("REST");
+			serviceData.setRequestType(HttpMethod.GET.name());
+			// serviceData.setRequestBody("{\"name\": \"morpheus\","
+			// +"\"job\": \"leader\"}");
+			serviceData.setRequestUri("https://10.14.226.153:9002/rest/v2/tf/products/HPT28U?fields=FULL");
+
+			HttpMethod httpMethod = HttpMethod.valueOf(HttpMethod.class, serviceData.getRequestType());
+			final HttpHeaders headers = new HttpHeaders();
+			ResponseEntity<String> responseEntity = null;
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			serviceData.getHeaders().forEach(header -> headers.add(header.getKey(), header.getValue()));
+			HttpEntity<String> httpEntity = new HttpEntity<>(serviceData.getRequestBody(), headers);
+			responseEntity = customFactory.getRestTemplate().exchange(serviceData.getRequestUri(), httpMethod,
+					httpEntity, String.class);
+			// serviceData.setResponseTime(responseEntity.getHeaders().get("response-time"));
+			serviceData.setResponse(responseEntity.getBody());
+			serviceData.setRawResponse(responseEntity.getBody());
+			List<KeyValue> respHeaders = new ArrayList<>();
+			responseEntity.getHeaders().forEach((key, values) -> respHeaders
+					.add(new KeyValue(key, values != null && !values.isEmpty() ? values.get(0) : null)));
+			serviceData.setResponseHeaders(respHeaders);
+			serviceData.setResponseType("json");
+
+			log.info("RESPONSE ENTITY : " + responseEntity.getBody());
 		} catch (HttpClientErrorException e) {
 			log.error(e.getResponseBodyAsString());
 		} catch (RestClientException e) {

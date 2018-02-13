@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.wsclient.model.KeyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,10 @@ import com.eviware.soapui.impl.wsdl.WsdlRequest;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wsclient.model.KeyValue;
 import com.wsclient.model.ServiceData;
+import com.wsclient.service.SoapRequestGenerator;
+import com.wsclient.service.SoapResponseGenerator;
 import com.wsclient.util.CustomFactory;
 import com.wsclient.util.XmlToJsonConverter;
 

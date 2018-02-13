@@ -8,8 +8,8 @@ import java.security.cert.CertificateException;
 
 import javax.net.ssl.SSLContext;
 
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.TrustStrategy;
@@ -33,7 +33,7 @@ public class CustomFactory {
 		KeyStore keyStore = null;
 		SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom().loadTrustMaterial(keyStore, acceptingTrustStrategy)
 				.build();
-		SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
+		SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
 		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(csf).build();
 		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
 		requestFactory.setHttpClient(httpClient);

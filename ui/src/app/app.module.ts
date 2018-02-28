@@ -14,6 +14,7 @@ import { SimpleRequestBodyComponent } from './simple-request-body/simple-request
 import { SimpleResponseViewComponent } from './simple-response-view/simple-response-view.component';
 import { HeaderRowComponent } from './header-row/header-row.component';
 import { ResponseHeaderComponent } from './response-header/response-header.component';
+import { XmlformatterComponent } from './xmlformatter/xmlformatter.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ResponseHeaderComponent } from './response-header/response-header.compo
     SimpleRequestBodyComponent,
     SimpleResponseViewComponent,
     HeaderRowComponent,
-    ResponseHeaderComponent
+    ResponseHeaderComponent,
+    XmlformatterComponent
   ],
   imports: [
     BrowserModule,

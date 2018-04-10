@@ -3,8 +3,7 @@
     <ul class="nav nav-tabs" style="margin-left: 1.5%;">
         <li class="active"><a data-toggle="tab" href="#home" (click)="toggleResponseView(0)">Simple</a></li>
         <li><a data-toggle="tab" href="#menu1" (click)="toggleResponseView(1)">Raw</a></li>
-        <li *ngIf="requestType == 'SOAP'"><a data-toggle="tab" href="#menu2" (click)="toggleResponseView(2)">XML</a></li>
-        <li><a data-toggle="tab" href="#menu4" (click)="toggleResponseView(3)">Headers</a></li>
+        <li><a data-toggle="tab" href="#menu2" (click)="toggleResponseView(2)">Headers</a></li>
     </ul>
 
     <div class="tab-content">
@@ -22,16 +21,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="requestType == 'SOAP'">
-            <div class="col-md-12" [hidden]="activeTabIndex!=2">
-                <div class="form-box no-margin-top" style="margin-bottom: 20px;">
-                    <div class="form-bottom">
-                        <pre>{{response}}</pre>
-                    </div>
-                </div>
-            </div>
-        </div> 
-        <div class="col-md-12" [hidden]="activeTabIndex!=3">
+        <div class="col-md-12" [hidden]="activeTabIndex!=2">
             <div class="form-box no-margin-top" style="margin-bottom: 20px;">
                 <div class="form-bottom focus">
                     <app-response-header [responseHeaders]="responseHeaders"></app-response-header>
